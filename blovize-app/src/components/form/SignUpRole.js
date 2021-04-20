@@ -1,7 +1,8 @@
 import styled from 'styled-components';
+import { Link } from 'react-router-dom';
 
-import playerImage from '../images/player.png'
-import institutionImage from '../images/institution.png'
+import playerImage from '../../images/player.png'
+import institutionImage from '../../images/institution.png'
 
 const SignUpRoleStyle = styled.div`
     display: flex;
@@ -19,25 +20,34 @@ const SignUpRoleStyle = styled.div`
         border-radius: 10px;
         width: 407px;
         height: 248px;
+        box-shadow: 5px 5px 5px grey;
 
         img {
             width: 170px;
             height: 170px;
         }
     }
-`
+`;
+
+const StyledLink = styled(Link)`
+  text-decoration: none;
+`;
 
 const SignUpRole = () => {
     return(
         <SignUpRoleStyle>
-            <div onClick= {() => console.log('clickd')}>
-                <h4>I am a sports player</h4>
-                <img src={playerImage} alt='playerImage' />
-            </div>
-            <div>
-                <h4>I am a sports institution</h4>
-                <img src={institutionImage} alt='institutionImage'/>
-            </div>
+            <StyledLink to={'/signup'} >
+                <div>
+                    <h4>I am a sports player</h4>
+                    <img src={playerImage} alt='playerImage' />
+                </div>
+            </StyledLink>
+            <StyledLink to={'/signup'}>
+                <div>
+                    <h4>I am a sports institution</h4>
+                    <img src={institutionImage} alt='institutionImage'/>
+                </div>
+            </StyledLink>
         </SignUpRoleStyle>
 
     )

@@ -4,7 +4,7 @@ const theme = {
       secondary: 'lightgreen',
       white: '#ffffff',
       grey: 'grey',
-      back: 'black'
+      black: 'black'
     }
   }
   

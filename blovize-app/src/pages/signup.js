@@ -3,8 +3,8 @@ import { useState } from 'react';
 
 import LandingLayout from '../components/layout/LandingLayout';
 import Landing from '../components/Landing';
-import SignUpRole from '../components/form/SignUpRole';
-import LoginForm from '../components/form/LoginForm';
+import SignUpForm from '../components/form/SignUpForm';
+
 
 const HomeDiv = styled.div`
     display: flex;
@@ -35,7 +35,7 @@ const HomeDiv = styled.div`
 
 `
 
-const HomePage = () => {
+const SignUpPage = () => {
     const [accesApp, setAccesApp] = useState(null);
 
 
@@ -43,15 +43,10 @@ const HomePage = () => {
         <>
             <LandingLayout>
                 <Landing />
-                <HomeDiv>
-                    <button className='button signup' onClick={() => setAccesApp('signup') }>Sign Up</button>
-                    <button className='button login' onClick={() => setAccesApp('login') }>Log in</button>
-                </HomeDiv>
-                {accesApp === 'signup' && <SignUpRole />}
-                {accesApp === 'login' && <LoginForm />}
+                <SignUpForm />
             </LandingLayout>  
         </>
     )
 }
 
-export default HomePage;
+export default SignUpPage;
