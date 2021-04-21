@@ -1,35 +1,15 @@
-import styled from 'styled-components';
-
 import trophy from '../images/trophy.png'
-import {Flex, Spacer, H1} from './UI';
+import {Spacer, LandingStyle, H1, H3, ImageStyled} from './UI';
 
-const LandingStyle = styled(Flex)`
-    flex-direction: column;
-    justify-content: center;
-    background-image: linear-gradient(180deg, #171923 0%, #0707FF 47.92%);
-    height: 25vh;
-    
-    *{
-        margin: 10px;
-    }
-
-    h4 {
-        color: ${props => props.theme.colors.grey};
-    }
-
-    img {
-        height: 150px;
-    }
-`
 
 const Landing = () => {
     return(
-        <LandingStyle>
-            <H1 color=''>BLOCKCHAIN NFTs SPORT TROPHIES</H1>
-            <h4>Share and collect sport NFTs Trophies</h4>
-            <img src={trophy} alt='Trophy image'/>
+        <LandingStyle direction='column' justify='center'  height='25vh'>
+            <H1>BLOCKCHAIN NFTs SPORT TROPHIES</H1>
+            <H3>Share and collect sport NFTs Trophies</H3>
+            <ImageStyled src={trophy} alt='Trophy image'/>
+            <Spacer />
         </LandingStyle>
-
     )
 }
 

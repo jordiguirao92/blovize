@@ -3,7 +3,6 @@ import { useState } from 'react';
 import { useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 
-import {SidebarDataInstitution} from './SideBarDataInstitution';
 import {SidebarDataPlayer} from './SideBarDataPlayer';
 import {Flex} from '../UI'
 
@@ -21,7 +20,6 @@ const SideBarPlayer = () => {
                 );
             })}
         </Flex>
-
     )
 }
 

@@ -1,5 +1,6 @@
 import styled from 'styled-components';
 import { useState } from 'react';
+import { Link } from 'react-router-dom';
 
 import LandingLayout from '../components/layout/LandingLayout';
 import Landing from '../components/Landing';
@@ -45,10 +46,9 @@ const HomePage = () => {
                 <Landing />
                 <HomeDiv>
                     <button className='button signup' onClick={() => setAccesApp('signup') }>Sign Up</button>
-                    <button className='button login' onClick={() => setAccesApp('login') }>Log in</button>
+                    <Link to="/login"><button className='button login'>Log in</button></Link>
                 </HomeDiv>
                 {accesApp === 'signup' && <SignUpRole />}
-                {accesApp === 'login' && <LoginForm />}
             </LandingLayout>  
         </>
     )

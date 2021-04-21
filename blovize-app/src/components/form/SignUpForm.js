@@ -1,52 +1,8 @@
-import styled from 'styled-components';
 import { useState, useContext } from 'react';
-import {Flex, Spacer} from '../UI';
+import {Flex, FlexStyled, Button, Input, H3, Spacer} from '../UI';
 
 import useInput from '../../hooks/useInput';
 
-const SignUpContainer = styled.div`
-    display: flex;  
-    justify-content: center;
-    margin: 20px 0px;
-`
-const SignUpStyle = styled.div`
-    display: flex;
-    flex-direction: column;
-    justify-content: space-around;
-    align-items: center;
-    background-color: ${props => props.theme.colors.white};
-    color: ${props => props.theme.colors.black};
-    border: 5px solid ${props => props.theme.colors.primary};
-    border-radius: 10px;
-    height: 250px;
-    width: 400px;
-    box-shadow: 5px 5px 5px grey;
-    
-    .signup_form__field {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        margin: 10px;
-    }
-
-    button {
-        margin: 10px;
-        border-radius: 7px;
-        width: 150px;
-        height: 50px;
-        border: 3px solid ${props => props.theme.colors.primary};
-        cursor: pointer;
-        color: ${props => props.theme.colors.white};
-        background-color: ${props => props.theme.colors.primary};
-    }
-
-    input {
-        width: 300px;
-        height: 30px;
-        border: 1px solid ${props => props.theme.colors.primary};
-        border-radius: 5px;
-    }
-`
 
 const SignUpForm = () => {
 
@@ -61,47 +17,45 @@ const SignUpForm = () => {
     }
 
     return(
-        <Flex justify='center'>
-            <SignUpStyle>
-                <h3>Hello Player</h3>
+        <Flex justify='center' margin='20px 0px'>
+            <FlexStyled direction='column' justify='center' width='500px' height='500px'>
+                <H3> Sign up to Blovize</H3>
                 <form onSubmit={handleLogin}>
-                    <Flex>
-                        <div className="signup_form__field">
+                    <Flex direction='column' align='flex-start'>
+                        <Flex direction='column' align='flex-start'>
                             <label htmlFor='name'>Name & Last Name</label>
-                            <input id='name' name='name' type='text' value={email} onChange={onEmailChange}/>
-                        </div>
-                        <div className="signup_form__field">
+                            <Input width='300px' height='30px' id='name' name='name' type='text' placeholder='Introduce your name' value='' onChange={onEmailChange}/>
+                        </Flex>
+                        <Flex direction='column' align='flex-start'>
                             <label htmlFor='nickName'>Nickname</label>
-                            <input id='nickName' name='nickName' type='text' value={email} onChange={onEmailChange}/>
-                        </div>
+                            <Input width='300px' height='30px' id='nickName' name='nickName' type='text' value={email} onChange={onEmailChange}/>
+                        </Flex>
                     </Flex>
-                        
-                    <Flex>
-                        <div className="signup_form__field">
+                    <Spacer />    
+                    <Flex direction='column' align='flex-start'>
+                        <Flex direction='column' align='flex-start'>
                             <label htmlFor='email'>Email</label>
-                            <input id='email' name='email' type='email' value={email} onChange={onEmailChange}/>
-                        </div>
-                        <div className="signup_form__field">
+                            <Input width='300px' height='30px' id='email' name='email' type='email' value={email} onChange={onEmailChange}/>
+                        </Flex>
+                        <Flex direction='column' align='flex-start'>
                             <label htmlFor='password'>Password</label>
-                            <input id='password' name='password' type='password' value={password} onChange={onPasswordChange}/>
-                        </div>
+                            <Input width='300px' height='30px' id='password' name='password' type='password' value={password} onChange={onPasswordChange}/>
+                        </Flex>
                     </Flex>
-  
+                    <Spacer />
                     <Flex>
-                        <div className="signup_form__field">
+                        <Flex direction='column' align='flex-start'>
                             <label htmlFor='description'>Description</label>
-                            <input id='description' name='description' type='text' value={email} onChange={onEmailChange}/>
-                        </div>
+                            <Input width='300px' height='30px' id='description' name='description' type='text' value={email} onChange={onEmailChange}/>
+                        </Flex>
                     </Flex>
-
-                
-                    
-                    <div className="signup_form__field">
+                    <Spacer />
+                    <Flex direction='column' align='flex-start'>
                         {error && <p>&nbsp;{error}</p>}
-                        <button>Log In</button>
-                    </div>
+                        <Button width='300px' height='30px'>Log In</Button>
+                    </Flex>
                 </form>
-            </SignUpStyle>
+            </FlexStyled>
         </Flex>
         
     )

@@ -2,10 +2,10 @@ import { useState } from 'react';
 
 import LandingLayout from '../components/layout/LandingLayout';
 import Landing from '../components/Landing';
-import SignUpForm from '../components/form/SignUpForm';
+import LoginForm from '../components/form/LoginForm';
 
 
-const SignUpPage = () => {
+const LoginPage = () => {
     const [accesApp, setAccesApp] = useState(null);
 
 
@@ -13,10 +13,10 @@ const SignUpPage = () => {
         <>
             <LandingLayout>
                 <Landing />
-                <SignUpForm />
+                <LoginForm />
             </LandingLayout>  
         </>
     )
 }
 
-export default SignUpPage;
+export default LoginPage;

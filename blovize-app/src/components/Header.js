@@ -1,20 +1,16 @@
-import styled from 'styled-components';
 import { useSelector } from 'react-redux';
+import {HeaderStyled} from '../components/UI';
 
-const HeaderStyle = styled.header`
-    background-color: ${props => props.theme.colors.grey};
-    display: flex;
-`
 
 const Header = () => {
     const user = useSelector(state => state.user);
     
     return(
-        <HeaderStyle>
+        <HeaderStyled>
             <div>
                 <h3>Blovize</h3>
             </div>
-        </HeaderStyle>
+        </HeaderStyled>
 
     )
 }
