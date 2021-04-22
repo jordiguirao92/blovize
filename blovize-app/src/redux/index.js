@@ -1,9 +1,11 @@
 import { combineReducers, createStore } from 'redux';
 import { Provider } from 'react-redux';
 import userReducer from './user/userReducer';
+import sidebarReducer from './sidebar/sidebarReducer';
 
 const reducers = combineReducers({
-  user: userReducer
+  user: userReducer,
+  sidebar: sidebarReducer
 })
 
 const store = createStore(

@@ -1,26 +1,24 @@
+import {FcPanorama, FcSettings, FcAddImage, FcRating} from 'react-icons/fc';
+
 export const SidebarDataInstitution = [
   {
     title: 'My Trohpies',
     path: '/my-trophies',
-    icon: '',
-    cName: 'nav-text'
+    icon: <FcRating/>,
   },
   {
     title: 'Created Trophies',
     path: '/my-trophies',
-    icon: '',
-    cName: 'nav-text'
+    icon: <FcPanorama />,
   },
   {
     title: 'Trophies Creator',
     path: '/trophies-creator',
-    icon: '',
-    cName: 'nav-text'
+    icon: <FcAddImage/>,
   },
   {
     title: 'Configuration Profile',
     path: '/configuration-profile',
-    icon: '',
-    cName: 'nav-text'
+    icon: <FcSettings />,
   }
 ];

@@ -1,54 +1,24 @@
-import styled from 'styled-components';
-import { Link } from 'react-router-dom';
-
 import playerImage from '../../images/player.png'
 import institutionImage from '../../images/institution.png'
+import {Flex, FlexStyled, H3, ImageStyled, LinkStyled} from '../UI';
 
-const SignUpRoleStyle = styled.div`
-    display: flex;
-    justify-content: space-evenly;
-
-    div {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        margin: 20px 0px;
-        cursor: pointer;
-        background-color: ${props => props.theme.colors.white};
-        color: ${props => props.theme.colors.black};
-        border: 5px solid ${props => props.theme.colors.primary};
-        border-radius: 10px;
-        width: 407px;
-        height: 248px;
-        box-shadow: 5px 5px 5px grey;
-
-        img {
-            width: 170px;
-            height: 170px;
-        }
-    }
-`;
-
-const StyledLink = styled(Link)`
-  text-decoration: none;
-`;
 
 const SignUpRole = () => {
     return(
-        <SignUpRoleStyle>
-            <StyledLink to={'/signup'} >
-                <div>
-                    <h4>I am a sports player</h4>
-                    <img src={playerImage} alt='playerImage' />
-                </div>
-            </StyledLink>
-            <StyledLink to={'/signup'}>
-                <div>
-                    <h4>I am a sports institution</h4>
-                    <img src={institutionImage} alt='institutionImage'/>
-                </div>
-            </StyledLink>
-        </SignUpRoleStyle>
+        <Flex justify='space-evenly'>
+            <LinkStyled to={'/signup/player'} >
+                <FlexStyled width='407px' height='248px' margin='20px 0px' cursor='pointer' direction='column' align='center'>
+                    <H3>I am a sports player</H3>
+                    <ImageStyled width='170px' height='170px' src={playerImage} alt='playerImage' />
+                </FlexStyled>
+            </LinkStyled>
+            <LinkStyled to={'/signup/creator'}>
+                <FlexStyled width='407px' height='248px' cursos='pointer' direction='column' align='center'>
+                    <H3>I am a sports institution</H3>
+                    <ImageStyled width='170px' height='170px' src={institutionImage} alt='institutionImage'/>
+                </FlexStyled>
+            </LinkStyled>
+        </Flex>
 
     )
 }

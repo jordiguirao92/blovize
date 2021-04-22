@@ -1,44 +1,39 @@
+import { FcLike, FcShop, FcSettings, FcAddImage, FcRating, FcExternal, FcDownload} from 'react-icons/fc';
+
 export const SidebarDataPlayer = [
     {
       title: 'Marketplace',
       path: '/marketplace',
-      icon: '',
-      cName: 'nav-text'
+      icon: <FcShop />,
     },
     {
       title: 'My Trohpies',
       path: '/my-trophies',
-      icon: '',
-      cName: 'nav-text'
+      icon: <FcRating/>,
     },
     {
       title: 'Favourites Trophies',
       path: '/favourites-trophies',
-      icon: '',
-      cName: 'nav-text'
+      icon: <FcLike />,
     },
     {
       title: 'Offers Received',
       path: '/offers-received',
-      icon: '',
-      cName: 'nav-text'
+      icon: <FcDownload/>,
     },
     {
       title: 'Offers Send',
       path: '/offer-send',
-      icon: '',
-      cName: 'nav-text'
+      icon: <FcExternal/>,
     },
     {
       title: 'Claim Trophy',
       path: '/claim-trophy',
-      icon: '',
-      cName: 'nav-text'
+      icon: <FcAddImage/>,
     },
     {
       title: 'Configuration Profile',
       path: '/configuration-profile',
-      icon: '',
-      cName: 'nav-text'
+      icon: <FcSettings />,
     }
   ];

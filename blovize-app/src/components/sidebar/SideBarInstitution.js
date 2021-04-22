@@ -1,25 +1,26 @@
 import styled from 'styled-components';
 import { useState } from 'react';
 import { useSelector } from 'react-redux';
-import { Link } from 'react-router-dom';
 
 import {SidebarDataInstitution} from './SideBarDataInstitution';
-import {Flex} from '../UI';
+import {LinkStyled, LiStyled, NavStyled, Spacer} from '../UI';
 
 
 const SideBarInstitution = () => {
     //const user = useSelector(state => state.user);
-    const [sidebar, setSidebar] = useState(false);
+    const sidebar = useSelector(state => state.sidebar);
 
-    
     return(
-        <Flex direction='column'>
+        <NavStyled left={sidebar === true ? '0%' : '-100%'} width='25%' padding='50px 30px' direction='column' justify='flex-start'  backColor={props => props.theme.colors.grey}>
             {SidebarDataInstitution.map((item, index) => {
                 return (
-                    <li key={index}><Link to={item.path}><span>{item.icon}</span>{item.title}</Link></li>
+                    <>
+                    <LiStyled key={index}><LinkStyled to={item.path} color={props => props.theme.colors.white}><span>{item.icon}</span>{item.title}</LinkStyled></LiStyled>
+                    <Spacer height='30px' />
+                    </>
                 );
             })}
-        </Flex>
+        </NavStyled>
 
     )
 }

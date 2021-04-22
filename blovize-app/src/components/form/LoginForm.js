@@ -10,7 +10,7 @@ const LoginForm = () => {
     const [password, onPasswordChange] = useInput();
     const [error, setError] = useState('');
 
-    const handleLogin = (event) => {
+    const handleFormSubmit = (event) => {
         console.log('login', email, password);
         event.preventDefault();
         setError('');
@@ -20,7 +20,7 @@ const LoginForm = () => {
         <Flex justify='center' margin='20px 0px'>
             <FlexStyled direction='column' justify='center' width='500px' height='300px'>
                 <H3>Login to Blovize</H3>
-                <form onSubmit={handleLogin}>
+                <form onSubmit={handleFormSubmit}>
                     <Flex direction='column' align='flex-start'>
                         <label htmlFor='login'>Email</label>
                         <Input width='300px' height='30px' id='login' name='login' type='email' placeholder='Introduce your email' value={email} onChange={onEmailChange}/>
