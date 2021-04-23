@@ -14,6 +14,24 @@ const Routes = () => (
       <Route exact path='/signup/:role' component={SignUpPage} />
       <Route exact path='/login' component={LoginPage} />
       <Route exact path='/main' component={MainPage} />
+
+  
+      {/*Player Routes*/}
+      {/* <Route exact path='/marketplace' component={} /> */}
+      {/* <Route exact path='/my-trophies' component={} /> */}
+      {/* <Route exact path='/favourites-trophies' component={} /> */}
+      {/* <Route exact path='/offers-received' component={} /> */}
+      {/* <Route exact path='/offer-send' component={} /> */}
+      {/* <Route exact path='/claim-trophy' component={} /> */}
+      
+      {/*Institution Routes*/}
+      {/* <Route exact path='/created-trophies' component={} /> */}
+      {/* <Route exact path='/trophies-creator' component={} /> */}
+
+      {/*Institution & Players Routes*/}
+      {/* <Route exact path='/configuration-profile' component={} /> */}
+
+
       <Route component={NotFoundPage}/>  
     </Switch>
   </Router>

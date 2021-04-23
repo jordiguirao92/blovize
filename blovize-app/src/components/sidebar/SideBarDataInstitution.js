@@ -4,13 +4,13 @@ import {iconSize} from '../UI'
 
 export const SidebarDataInstitution = [
   {
-    title: 'My Trohpies',
+    title: 'My Trophies',
     path: '/my-trophies',
     icon: <FcRating size={iconSize}/>,
   },
   {
     title: 'Created Trophies',
-    path: '/my-trophies',
+    path: '/created-trophies',
     icon: <FcPanorama size={iconSize}/>,
   },
   {
