@@ -1,7 +1,7 @@
 import {useState} from 'react';
 import {useHistory} from 'react-router-dom';
 
-import {Flex, FlexStyled, Button, Input, H3, Spacer} from '../UI';
+import {Flex, FlexStyled, Button, Input, H3, Spacer, P} from '../UI';
 import { login } from '../../services/auth';
 
 
@@ -15,7 +15,9 @@ const LoginForm = () => {
         event.preventDefault();
         const result = await login(formData.email, formData.password);
         if (result) {
-            history.push('/main')
+            history.push('/main');
+        } else {
+            setError('Email or Password wrong');
         }
     }
 
@@ -61,7 +63,7 @@ const LoginForm = () => {
                     <Spacer height='10px'/>
 
                     <Flex direction='column' align='flex-start'>
-                        {error && <p>&nbsp;{error}</p>}
+                        {error && <P color='red'>&nbsp;{error}</P>}
                         <Button width='300px' height='30px'>Log In</Button>
                     </Flex>
                 </form>

@@ -13,10 +13,9 @@ const SignUpForm = ({role}) => {
         email:'', 
         password:'', 
         description:'', 
-        creator: role === 'institution'
+        creator: role === 'institution',
+        userRole: role === 'institution' ? 'institution' : 'player'
     });
-    console.log(formData.creator);
-
     
     const handleFormSubmit = async (event) => {
         event.preventDefault();

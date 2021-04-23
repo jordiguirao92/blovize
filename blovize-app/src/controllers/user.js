@@ -1,16 +1,16 @@
 import { singup } from '../services/auth';
 import { createObjectWithId, getObjectById } from '../services/db';
 
-const USER_COLLECTION = 'profiles';
+const USERS_COLLECTION = 'profiles';
 
 export async function userSignup(userData) {
-  const { name, nickname, email, password, description, creator} = userData;
+  const { name, nickname, email, password, description, creator, userRole} = userData;
   const userProfile = {...userData, trophyList: [], trophyFavourites: [], buyOffers: [], salesOffers: []};
 
   const { success: signupSuccess, data } = await singup(email, password);
 
   if (signupSuccess) {
-    const profileSuccess = await createObjectWithId(USER_COLLECTION, userProfile, data);
+    const profileSuccess = await createObjectWithId(USERS_COLLECTION, userProfile, data);
     if (profileSuccess.success) {
       return true;
     }
@@ -19,6 +19,6 @@ export async function userSignup(userData) {
 }
 
 export async function getUserProfile(userId) {
-  const { success, data } = await getObjectById(USER_COLLECTION, userId)
+  const { success, data } = await getObjectById(USERS_COLLECTION, userId)
   return success ? data : null;
 }

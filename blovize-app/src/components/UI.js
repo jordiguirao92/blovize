@@ -80,6 +80,9 @@ const A = styled.a`
   align-items: center;
 
 `
+const P = styled.p`
+  color: ${props => props.color ? props.color : theme.colors.black};
+`
 
 const FooterStyled = styled.footer`
   display: flex;
@@ -193,5 +196,6 @@ export {
   LiStyled,
   NavStyled,
   FullDiv, 
-  iconSize
+  iconSize,
+  P
 }

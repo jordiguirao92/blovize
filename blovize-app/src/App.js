@@ -20,7 +20,6 @@ function App() {
         console.log('IMTCHLG ~ El usuario ha hecho login: ', user);
         const userProfile = await getUserProfile(user.uid);
         dispatch(setUser(userProfile));
-        history.push('/main')
       } else {
         console.log('IMTCHLG ~ El usuario ha hecho logout: ');
         dispatch(clearUser());
