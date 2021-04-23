@@ -23,6 +23,7 @@ const FlexStyled = styled.div`
   justify-content: ${props => props.justify ? props.justify : 'space-between'};
   align-items: ${props => props.align ? props.align : 'center'};
   margin: ${props => props.margin ? props.margin : 'auto'};
+  padding: ${props => props.padding ? props.padding : 'auto'};
   border: 5px solid ${props => props.colorBorder ? props.colorBorder : theme.colors.primary};
   border-radius: ${props => props.borderRadius ? props.borderRadius : '10px'};
   color: ${props => props.color ? props.color : theme.colors.black};
@@ -101,7 +102,8 @@ const HeaderStyled = styled.header`
 
 const ImageStyled = styled.img`
   height: ${props => props.height ? props.height : '150px'};
-  width: ${props => props.height ? props.height : ''};
+  width: ${props => props.width ? props.width : ''};
+  margin: ${props => props.margin ? props.margin : ''};
 `
 const LinkStyled = styled(Link)`
   text-decoration: none;

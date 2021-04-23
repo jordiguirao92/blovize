@@ -4,7 +4,7 @@ import {useHistory} from 'react-router-dom';
 import {Flex, FlexStyled, Button, Input, H3, Spacer, LinkStyled, A} from '../UI';
 import {userSignup} from '../../controllers/user';
 
-const SignUpForm = (role) => {
+const SignUpForm = ({role}) => {
 
     const history = useHistory();
     const [error, setError] = useState('');
@@ -13,18 +13,10 @@ const SignUpForm = (role) => {
         email:'', 
         password:'', 
         description:'', 
-        creator: ''
+        creator: role === 'institution'
     });
+    console.log(formData.creator);
 
-    useEffect(() => {
-        if(role.role === 'player') {
-            setFormData({ ...formData, creator: false});
-            console.log(formData.creator);
-        } else if(role.role === 'institution') {
-            setFormData({ ...formData, creator: 'ins' });
-            console.log(formData.creator);
-        }
-      }, []);
     
     const handleFormSubmit = async (event) => {
         event.preventDefault();
@@ -49,7 +41,7 @@ const SignUpForm = (role) => {
                                 type='text' 
                                 placeholder='Introduce your name' 
                                 value={formData.name} 
-                                onChange={(value) => setFormData({ ...formData, name: value })}
+                                onChange={(event) => setFormData({ ...formData, name: event.target.value })}
                                 />
                         </Flex>
                         <Flex direction='column' align='flex-start'>
@@ -60,7 +52,7 @@ const SignUpForm = (role) => {
                                 type='text' 
                                 placeholder='Introduce your nickname' 
                                 value={formData.nickName} 
-                                onChange={(value) => setFormData({ ...formData, nickName: value })}
+                                onChange={(event) => setFormData({ ...formData, nickName: event.target.value })}
                                 />
                         </Flex>
                     </Flex>
@@ -74,7 +66,7 @@ const SignUpForm = (role) => {
                                 type='email' 
                                 placeholder='Introduce your email' 
                                 value={formData.email} 
-                                onChange={(value) => setFormData({ ...formData, email: value })}
+                                onChange={(event) => setFormData({ ...formData, email: event.target.value })}
                                 />
                         </Flex>
                         <Flex direction='column' align='flex-start'>
@@ -85,7 +77,7 @@ const SignUpForm = (role) => {
                                 type='password' 
                                 placeholder='Introduce a password' 
                                 value={formData.password} 
-                                onChange={(value) => setFormData({ ...formData, password: value })}
+                                onChange={(event) => setFormData({ ...formData, password: event.target.value })}
                                 />
                         </Flex>
                     </Flex>
@@ -99,14 +91,14 @@ const SignUpForm = (role) => {
                                 type='text' 
                                 placeholder='Write few words about you' 
                                 value={formData.description} 
-                                onChange={(value) => setFormData({ ...formData, description: value })}
+                                onChange={(event) => setFormData({ ...formData, description: event.target.value })}
                                 />
                         </Flex>
                     </Flex>
                     <Spacer />
                     <Flex direction='column' align='flex-start'>
                         {error && <p>&nbsp;{error}</p>}
-                        <Button width='300px' height='30px'>Log In</Button>
+                        <Button width='300px' height='30px'>Sign up</Button>
                     </Flex>
                     <Spacer />
                     <Flex align='flex-start'>

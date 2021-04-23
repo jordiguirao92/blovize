@@ -32,7 +32,11 @@ const LoginForm = () => {
                             type='email' 
                             placeholder='Introduce your email' 
                             value={formData.email} 
-                            onChange={(value) => setFormData({ ...formData, email: value })}
+                            onChange={(event) => {
+                                setFormData({ ...formData, email: event.target.value });
+                                console.log(event.target.value)
+                                }
+                            }
                         />
                     </Flex>
 
@@ -46,7 +50,11 @@ const LoginForm = () => {
                             type='password' 
                             placeholder='Introduce your password' 
                             value={formData.password} 
-                            onChange={(value) => setFormData({ ...formData, password: value })}
+                            onChange={(event) => {
+                                setFormData({ ...formData, password: event.target.value })
+                                console.log(event.target.value);
+                                }
+                            }
                         />
                     </Flex>
 

@@ -10,7 +10,7 @@ export async function userSignup(userData) {
   const { success: signupSuccess, data } = await singup(email, password);
 
   if (signupSuccess) {
-    const profileSuccess = await createObjectWithId(USER_COLLECTION, { name, nickname, email, password, description, creator }, data);
+    const profileSuccess = await createObjectWithId(USER_COLLECTION, userProfile, data);
     if (profileSuccess.success) {
       return true;
     }

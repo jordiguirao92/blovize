@@ -9,7 +9,7 @@ export const SidebarDataPlayer = [
       icon: <FcShop size={iconSize}/>,
     },
     {
-      title: 'My Trohpies',
+      title: 'My Trophies',
       path: '/my-trophies',
       icon: <FcRating size={iconSize}/>,
     },

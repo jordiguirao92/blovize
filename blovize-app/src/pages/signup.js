@@ -1,4 +1,3 @@
-import { useState } from 'react';
 import {useParams} from "react-router-dom";
 
 import LandingLayout from '../components/layout/LandingLayout';
@@ -8,7 +7,6 @@ import SignUpForm from '../components/form/SignUpForm';
 
 
 const SignUpPage = () => {
-    const [accesApp, setAccesApp] = useState(null);
     const {role} = useParams();
     console.log(role);
 
