@@ -3,11 +3,11 @@ import { useState } from 'react';
 import { useSelector } from 'react-redux';
 
 import {SidebarDataPlayer} from './SideBarDataPlayer';
-import {LinkStyled, LiStyled, NavStyled, Spacer } from '../UI'
+import {LinkStyled, LiStyled, NavStyled, Spacer, A } from '../UI'
 
 
 const SideBarPlayer = () => {
-    //const user = useSelector(state => state.user);
+    
     const sidebar = useSelector(state => state.sidebar);
 
     return(
@@ -15,7 +15,7 @@ const SideBarPlayer = () => {
             {SidebarDataPlayer.map((item, index) => {
                 return (
                     <>
-                    <LiStyled key={index}><LinkStyled to={item.path} color={props => props.theme.colors.white}><span>{item.icon}</span>{item.title}</LinkStyled></LiStyled>
+                    <LiStyled key={index}><LinkStyled to={item.path} color={props => props.theme.colors.white}><A>{item.icon}{item.title}</A></LinkStyled></LiStyled>
                     <Spacer height='30px' />
                     </>
                 );

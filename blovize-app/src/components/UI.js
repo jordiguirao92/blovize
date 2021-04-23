@@ -75,6 +75,9 @@ const Input = styled.input`
 
 const A = styled.a`
   text-decoration: none;
+  display: flex;
+  align-items: center;
+
 `
 
 const FooterStyled = styled.footer`
@@ -82,6 +85,10 @@ const FooterStyled = styled.footer`
   flex-direction: ${props => props.direction ? props.direction : 'row'};
   justify-content: ${props => props.justify ? props.justify : 'space-around'};
   background-color: ${props => props.backColor ? props.backColor : theme.colors.black};
+  position: absolute;
+  left:0;
+  bottom:0;
+  right:0;
 `
 
 const HeaderStyled = styled.header`
@@ -162,8 +169,8 @@ const FullDiv = styled.div`
   height: ${props => props.width ? props.width : '100vh'};
   position: fixed;
   top: 0%;
-
 `
+const iconSize = 35;
 
 
 export {
@@ -183,5 +190,6 @@ export {
   BurguerStyled, 
   LiStyled,
   NavStyled,
-  FullDiv
+  FullDiv, 
+  iconSize
 }

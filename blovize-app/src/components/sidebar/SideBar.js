@@ -8,7 +8,6 @@ import {FullDiv} from '../UI';
 
 const SideBar = () => {
     //const user = useSelector(state => state.user);
-    const sidebar = useSelector(state => state.sidebar);
     const [userRole, setUserRole] = useState('player');
         
     return(

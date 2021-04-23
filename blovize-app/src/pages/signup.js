@@ -10,6 +10,7 @@ import SignUpForm from '../components/form/SignUpForm';
 const SignUpPage = () => {
     const [accesApp, setAccesApp] = useState(null);
     const {role} = useParams();
+    console.log(role);
 
     return(
         <>

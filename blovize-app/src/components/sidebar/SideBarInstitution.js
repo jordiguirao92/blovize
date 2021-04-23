@@ -3,7 +3,7 @@ import { useState } from 'react';
 import { useSelector } from 'react-redux';
 
 import {SidebarDataInstitution} from './SideBarDataInstitution';
-import {LinkStyled, LiStyled, NavStyled, Spacer} from '../UI';
+import {LinkStyled, LiStyled, NavStyled, Spacer, A} from '../UI';
 
 
 const SideBarInstitution = () => {
@@ -15,7 +15,7 @@ const SideBarInstitution = () => {
             {SidebarDataInstitution.map((item, index) => {
                 return (
                     <>
-                    <LiStyled key={index}><LinkStyled to={item.path} color={props => props.theme.colors.white}><span>{item.icon}</span>{item.title}</LinkStyled></LiStyled>
+                    <LiStyled key={index}><LinkStyled to={item.path} color={props => props.theme.colors.white}><A>{item.icon}{item.title}</A></LinkStyled></LiStyled>
                     <Spacer height='30px' />
                     </>
                 );

@@ -1,6 +1,7 @@
 import { useSelector } from 'react-redux';
 import { useState } from 'react';
-import {HeaderStyled} from '../components/UI';
+import {HeaderStyled, LinkStyled, Button} from '../components/UI';
+import {logout} from '../services/auth';
 
 import Burguer from './Burguer';
 
@@ -14,6 +15,10 @@ const HeaderMain = () => {
             <div>
                 <h3>Blovize</h3>
             </div>
+            {user 
+                ? <span>Hello {user.name}<Button onClick={logout}>(Log out)</Button></span>
+                : <LinkStyled to="/login"><Button>Login</Button></LinkStyled>
+            }
         </HeaderStyled>
 
     )

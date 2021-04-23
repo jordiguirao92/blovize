@@ -1,19 +1,22 @@
-import { useState, useContext } from 'react';
+import {useState} from 'react';
+import {useHistory} from 'react-router-dom';
 
-import useInput from '../../hooks/useInput';
 import {Flex, FlexStyled, Button, Input, H3, Spacer} from '../UI';
+import { login } from '../../services/auth';
 
 
 const LoginForm = () => {
 
-    const [email, onEmailChange] = useInput();
-    const [password, onPasswordChange] = useInput();
+    const history = useHistory();
+    const [formData, setFormData] = useState({ email: '', password: '' });
     const [error, setError] = useState('');
-
-    const handleFormSubmit = (event) => {
-        console.log('login', email, password);
+    
+    const handleFormSubmit = async (event) => {
         event.preventDefault();
-        setError('');
+        const result = await login(formData.email, formData.password);
+        if (result) {
+            history.push('/main')
+        }
     }
 
     return(
@@ -23,14 +26,28 @@ const LoginForm = () => {
                 <form onSubmit={handleFormSubmit}>
                     <Flex direction='column' align='flex-start'>
                         <label htmlFor='login'>Email</label>
-                        <Input width='300px' height='30px' id='login' name='login' type='email' placeholder='Introduce your email' value={email} onChange={onEmailChange}/>
+                        <Input width='300px' height='30px' 
+                            id='login' 
+                            name='login' 
+                            type='email' 
+                            placeholder='Introduce your email' 
+                            value={formData.email} 
+                            onChange={(value) => setFormData({ ...formData, email: value })}
+                        />
                     </Flex>
 
                     <Spacer height='10px'/>
 
                     <Flex direction='column' align='flex-start'>
                         <label htmlFor='password'>Password</label>
-                        <Input width='300px' height='30px' id='password' name='password' type='password' placeholder='Introduce your password' value={password} onChange={onPasswordChange}/>
+                        <Input width='300px' height='30px' 
+                            id='password' 
+                            name='password' 
+                            type='password' 
+                            placeholder='Introduce your password' 
+                            value={formData.password} 
+                            onChange={(value) => setFormData({ ...formData, password: value })}
+                        />
                     </Flex>
 
                     <Spacer height='10px'/>
