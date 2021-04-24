@@ -5,9 +5,10 @@ const TrophyClaim = () => {
     
     return(
       
-      <FlexStyled justify='space-around' padding='15px'>
-        <Input width='300px' height='30px' placeholder="Introduce the claim code here"/>
-        <Button>Claim</Button>
+      <FlexStyled direction='column' justify='space-around' padding='15px' margin='0px 75px'>
+        <Input width='500px' height='40px' placeholder="Introduce the claim code here"/>
+        <Spacer />
+        <Button width='500px' height='30px'>Claim</Button>
       </FlexStyled>
     )
 }

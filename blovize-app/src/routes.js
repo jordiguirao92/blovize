@@ -6,6 +6,15 @@ import LoginPage from './pages/login';
 import MainPage from './pages/main';
 import NotFoundPage from './pages/notfound';
 import MyTrophies from './pages/mytrophies';
+import Marketplace from './pages/marketplace';
+import FavouriteTrophies from './pages/favouritesTrophies';
+import OffersReceived from './pages/offersReceived';
+import OffersSend from './pages/offersSend';
+import ClaimTrophy from './pages/claimTrophy';
+import CreatedTrophies from './pages/createdTrophies';
+import TrophiesCreator from './pages/trophiesCreator';
+import ConfigurationProfile from './pages/configurationProfile';
+import ControlTrophyBoard from './pages/controlTrophyBoard';
 
 
 const Routes = () => (
@@ -18,19 +27,20 @@ const Routes = () => (
 
   
       {/*Player Routes*/}
-      {/* <Route exact path='/marketplace' component={} /> */}
+      <Route exact path='/marketplace' component={Marketplace} />
       <Route exact path='/my-trophies' component={MyTrophies} />
-      {/* <Route exact path='/favourites-trophies' component={} /> */}
-      {/* <Route exact path='/offers-received' component={} /> */}
-      {/* <Route exact path='/offer-send' component={} /> */}
-      {/* <Route exact path='/claim-trophy' component={} /> */}
+      <Route exact path='/favourites-trophies' component={FavouriteTrophies} />
+      <Route exact path='/offers-received' component={OffersReceived} />
+      <Route exact path='/offer-send' component={OffersSend} />
+      <Route exact path='/claim-trophy' component={ClaimTrophy} />
       
       {/*Institution Routes*/}
-      {/* <Route exact path='/created-trophies' component={} /> */}
-      {/* <Route exact path='/trophies-creator' component={} /> */}
+      <Route exact path='/created-trophies' component={CreatedTrophies} />
+      <Route exact path='/trophies-creator' component={TrophiesCreator} />
+      <Route exact path='/trophies-control-board' component={ControlTrophyBoard} />
 
       {/*Institution & Players Routes*/}
-      {/* <Route exact path='/configuration-profile' component={} /> */}
+      <Route exact path='/configuration-profile' component={ConfigurationProfile} />
 
 
       <Route component={NotFoundPage}/>  

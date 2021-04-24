@@ -53,8 +53,21 @@ const H1 = styled.h1`
     color:  ${props => props.color ? props.color : theme.colors.white};
  
 `
+
+const H2 = styled.h2`
+    color:  ${props => props.color ? props.color : theme.colors.black};
+    margin: ${props => props.margin ? props.margin : 'auto'};
+ 
+`
+
 const H3 = styled.h3`
     color:  ${props => props.color ? props.color : theme.colors.grey};
+    margin: ${props => props.margin ? props.margin : 'auto'};
+`
+
+const H4 = styled.h4`
+    color:  ${props => props.color ? props.color : theme.colors.black};
+    margin: ${props => props.margin ? props.margin : 'auto'};
 `
 
 const Button = styled.button`
@@ -187,6 +200,8 @@ export {
   Spacer, 
   H1,
   H3,
+  H2,
+  H4,
   A, 
   Button,
   FooterStyled,

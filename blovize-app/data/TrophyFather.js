@@ -17,7 +17,7 @@ export const TrophyFather = [
      team: 'Miami Heats',
      classification: '1rst Place',
      institution: 'NBA',
-     date: '23/06/2020',
+     date: '23/06/2019',
      branch: 'Basketball',
      description: 'Miami Heats won the series 3-2',
      image: 'link to firestore',

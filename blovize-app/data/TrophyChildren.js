@@ -162,7 +162,7 @@ export const TrophyChildren = [
     },
      {
      id: 8,
-     fatherId: 100,
+     fatherId: 300,
      name: 'Torneo Internacional de Madrid',
      team: 'CB Parets del Valles',
      classification: 'Primera Plaza',

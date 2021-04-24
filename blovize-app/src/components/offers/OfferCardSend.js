@@ -4,7 +4,7 @@ const OfferCardSend = () => {
     
     return(
       
-      <FlexStyled justify='space-around'>
+      <FlexStyled justify='space-around' margin='50px'>
         <p>ID: 22</p>
         <p>UEFA Champions League 2020</p>
         <p>Real Madrid</p>

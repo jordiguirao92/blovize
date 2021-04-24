@@ -4,7 +4,7 @@ import {useHistory} from 'react-router-dom';
 import {Flex, FlexStyled, Button, Input, H3, Spacer, LinkStyled, A} from '../UI';
 import {userSignup} from '../../controllers/user';
 
-const SignUpForm = ({role}) => {
+const ConfigurationProfileForm = ({role}) => {
 
     const history = useHistory();
     const [error, setError] = useState('');
@@ -29,7 +29,7 @@ const SignUpForm = ({role}) => {
     return(
         <Flex justify='center' margin='20px 0px'>
             <FlexStyled direction='column' justify='center' width='500px' height='500px'>
-                <H3> Sign up to Blovize</H3>
+                <H3>Configuration Profile</H3>
                 <form onSubmit={handleFormSubmit}>
                     <Flex direction='column' align='flex-start'>
                         <Flex direction='column' align='flex-start'>
@@ -111,4 +111,4 @@ const SignUpForm = ({role}) => {
     )
 }
 
-export default SignUpForm;
+export default ConfigurationProfileForm;
