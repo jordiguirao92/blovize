@@ -6,6 +6,7 @@ import Routes from './routes';
 import {registerAuthObserver} from './services/auth';
 import { setUser, clearUser } from './redux/user/userActions';
 import { getUserProfile } from './controllers/user';
+import Loading from './components/Loading';
 
 
 
@@ -28,7 +29,7 @@ function App() {
     })
   }, []);
 
-  if (isLoading) return <>Loading...</>;
+  if (isLoading) return <Loading />;
 
   return (
     <div className="app">

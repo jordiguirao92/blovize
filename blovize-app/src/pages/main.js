@@ -8,6 +8,7 @@ import { getUserProfile } from '../controllers/user';
 
 import MainLayout from '../components/layout/MainLayout';
 import Landing from '../components/Landing';
+import Loading from '../components/Loading'
 
 //Testing
 import ProfileCard from '../components/ProfileCard';
@@ -21,7 +22,7 @@ import TrophyClaim from '../components/trophy/TrophyClaim';
 
 
 const MainPage = () => {
-    const dispatch = useDispatch();
+    /*const dispatch = useDispatch();
     const history = useHistory();
     const [isLoading, setIsLoading] = useState(true);
 
@@ -41,7 +42,7 @@ const MainPage = () => {
         })
       }, []);
 
-    if (isLoading) return <>Loading...</>;
+    if (isLoading) return <Loading />;*/
 
     return(
         <>
