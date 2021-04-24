@@ -5,6 +5,7 @@ import SignUpPage from './pages/signup';
 import LoginPage from './pages/login';
 import MainPage from './pages/main';
 import NotFoundPage from './pages/notfound';
+import MyTrophies from './pages/mytrophies';
 
 
 const Routes = () => (
@@ -18,7 +19,7 @@ const Routes = () => (
   
       {/*Player Routes*/}
       {/* <Route exact path='/marketplace' component={} /> */}
-      {/* <Route exact path='/my-trophies' component={} /> */}
+      <Route exact path='/my-trophies' component={MyTrophies} />
       {/* <Route exact path='/favourites-trophies' component={} /> */}
       {/* <Route exact path='/offers-received' component={} /> */}
       {/* <Route exact path='/offer-send' component={} /> */}

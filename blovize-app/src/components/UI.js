@@ -5,12 +5,13 @@ import theme from '../styles/theme';
 
 const Flex = styled.div`
   width: ${props => props.width ? props.width : '100%'};
-  height: ${props => props.width ? props.width : ''};
+  height: ${props => props.height ? props.height : ''};
   display: flex;
   flex-direction: ${props => props.direction ? props.direction : 'row'};
   justify-content: ${props => props.justify ? props.justify : 'space-between'};
   align-items: ${props => props.align ? props.align : 'center'};
   margin: ${props => props.margin ? props.margin : ''};
+  padding: ${props => props.padding ? props.padding : ''};
   background-color: ${props => props.backColor ? props.backColor : ''};
   color: ${props => props.color ? props.color : ''};
 `
@@ -82,6 +83,8 @@ const A = styled.a`
 `
 const P = styled.p`
   color: ${props => props.color ? props.color : theme.colors.black};
+  margin: ${props => props.margin ? props.margin : '5px'};
+  font-weight: ${props => props.bold ? props.bold : ''};
 `
 
 const FooterStyled = styled.footer`
@@ -91,7 +94,7 @@ const FooterStyled = styled.footer`
   background-color: ${props => props.backColor ? props.backColor : theme.colors.black};
   position: absolute;
   left:0;
-  bottom:0;
+  bottom: 0;
   right:0;
 `
 

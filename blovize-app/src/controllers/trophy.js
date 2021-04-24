@@ -1,10 +1,14 @@
-import bcrypt from 'bcryptjs';
 import { singup } from '../services/auth';
 import { createObjectWithId, getObjectById } from '../services/db';
 
 const USERS_COLLECTION = 'profiles';
+const TROPHIES_COLLECTION = 'trophies';
 
-export async function userSignup(userData) {
+export async function getTrophies(userId) {
+
+}
+
+/*export async function userSignup(userData) {
   const {email, password} = userData;
   const salt = bcrypt.genSaltSync(10);
   const hashPassword = bcrypt.hashSync(password, salt);
@@ -19,7 +23,7 @@ export async function userSignup(userData) {
     }
   }
   return false;
-}
+}*/
 
 export async function getUserProfile(userId) {
   const { success, data } = await getObjectById(USERS_COLLECTION, userId)

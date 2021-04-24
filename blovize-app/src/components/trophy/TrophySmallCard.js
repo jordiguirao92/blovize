@@ -1,21 +1,23 @@
-import {Flex, FlexStyled, ImageStyled, Button} from '../UI';
-import trophyImage from '../../images/trophy.png'
+import {Flex, FlexStyled, ImageStyled, Button, P} from '../UI';
+import trophyImage from '../../images/trophy.png';
+import Star from './Star';
+
 
 const TrophySmallCard = () => {
     
     return(
       
-      <FlexStyled justify='space-around'>
-        <Flex>
-          <img src='' alt='corazon'/>
+      <FlexStyled justify='center' direction='column' width='300px' height='320px' padding='10px'>
+        <Flex justify='flex-end'>
+          <Star  color={'gold'}/>
         </Flex>
         <ImageStyled src={trophyImage} alt='trophy image'/>
-        <p>UEFA CHAMPIONS LEGAUE 2020</p>
-        <p>Real Madrid</p>
-        <p>Price</p>
+        <P bold='bold'>UEFA CHAMPIONS LEGAUE 2020</P>
+        <P>Real Madrid</P>
+        <P>25€</P>
         <Flex>
-          <p>ID: 234</p>
-          <p>15/05/2020</p>
+          <P>ID: 234</P>
+          <P>15/05/2020</P>
         </Flex>
       </FlexStyled>
     )
