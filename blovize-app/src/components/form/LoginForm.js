@@ -24,7 +24,7 @@ const LoginForm = () => {
     return(
         <Flex justify='center' margin='20px 0px'>
             <FlexStyled direction='column' justify='center' width='500px' height='300px'>
-                <H3>Login to Blovize</H3>
+                <H3 margin='20px'>Login to Blovize</H3>
                 <form onSubmit={handleFormSubmit}>
                     <Flex direction='column' align='flex-start'>
                         <label htmlFor='login'>Email</label>
@@ -66,6 +66,7 @@ const LoginForm = () => {
                         {error && <P color='red'>&nbsp;{error}</P>}
                         <Button width='300px' height='30px'>Log In</Button>
                     </Flex>
+                    <Spacer height='10px'/>
                 </form>
             </FlexStyled>
         </Flex>

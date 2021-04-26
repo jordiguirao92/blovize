@@ -21,7 +21,7 @@ const ProfileCard = () => {
         </Flex>
           
         <Flex direction='column'>
-          <ImageStyled src={trophyImage}/>
+          <ImageStyled src={trophyImage}/>      
           <p>{user.trophyList.length} trophies</p>
         </Flex>
       </FlexStyled>

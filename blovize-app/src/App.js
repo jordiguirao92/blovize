@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 import {useDispatch} from 'react-redux';
 import {useHistory} from 'react-router-dom';
 
+import {Wrapper} from './components/UI'
 import Routes from './routes';
 import {registerAuthObserver} from './services/auth';
 import { setUser, clearUser } from './redux/user/userActions';
@@ -32,9 +33,9 @@ function App() {
   if (isLoading) return <Loading />;
 
   return (
-    <div className="app">
+    <Wrapper className="app">
       <Routes />
-    </div>
+    </Wrapper>
   );
 }
 

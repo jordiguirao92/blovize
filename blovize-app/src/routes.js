@@ -37,10 +37,11 @@ const Routes = () => (
       {/*Institution Routes*/}
       <Route exact path='/created-trophies' component={CreatedTrophies} />
       <Route exact path='/trophies-creator' component={TrophiesCreator} />
-      <Route exact path='/trophies-control-board' component={ControlTrophyBoard} />
+      <Route exact path='/trophies-control-board/:id' component={ControlTrophyBoard} />
 
       {/*Institution & Players Routes*/}
       <Route exact path='/configuration-profile' component={ConfigurationProfile} />
+      {/*<Route exact path='/detail/:id' component={} />*/}
 
 
       <Route component={NotFoundPage}/>  

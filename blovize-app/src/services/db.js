@@ -39,6 +39,7 @@ export async function getObjectById(collection, id) {
       const data = doc.data();
       return { success: true, data: { ...data, id: doc.id } };
     }
+    return { success: false, data: null };
   } catch (error) {
     console.log('IMTCHLG ~ file: db.js ~ line 43 ~ getObjectById ~ error', error);
     return { success: false };
@@ -60,3 +61,20 @@ export async function listCollection(collection) {
     return { success: false };
   }
 }
+
+export async function listCollectionFiltered(collection, field, condition, value) {
+  try {
+    const db = getDb();
+    const querySnapshot = await db.collection(collection).where(field, condition, value).get();
+    const data = [];
+    querySnapshot.forEach((doc) => {
+      data.push({ id: doc.id, ...doc.data() })  
+    });
+    return { success: true, data };
+
+  } catch(error) {
+    console.log('IMTCHLG ~ file: db.js ~ line 59 ~ listCollectionFiltered ~ error', error);
+    return { success: false };
+  }
+}
+

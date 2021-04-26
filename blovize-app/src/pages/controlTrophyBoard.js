@@ -16,27 +16,7 @@ import TrophyControlBoardCard from '../components/trophy/TrophyControlBoardCard'
 
 
 const ControlTrophyBoard = () => {
-    /*const dispatch = useDispatch();
-    const history = useHistory();
-    const [isLoading, setIsLoading] = useState(true);
-
-    useEffect(() => {
-        registerAuthObserver(async (user) => {
-          if (user) {
-            console.log('IMTCHLG ~ El usuario ha hecho login: ', user);
-            const userProfile = await getUserProfile(user.uid);
-            dispatch(setUser(userProfile));
-          } else {
-            console.log('IMTCHLG ~ El usuario ha hecho logout: ');
-            dispatch(clearUser());
-            history.push('/');
-            
-          }
-          setIsLoading(false)
-        })
-      }, []);
-
-    if (isLoading) return <Loading />;*/
+   
 
 
     return(

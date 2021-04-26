@@ -1,29 +1,25 @@
 import { singup } from '../services/auth';
-import { createObjectWithId, getObjectById } from '../services/db';
+import { createObjectWithId, getObjectById, listCollectionFiltered } from '../services/db';
 
 const USERS_COLLECTION = 'profiles';
-const TROPHIES_COLLECTION = 'trophies';
+const TROPHIES_CHILDREN_COLLECTION = 'trophiesChildren';
+const TROPHIES_FATHER_COLLECTION = 'trophiesFather';
 
-export async function getTrophies(userId) {
-
+export async function getMarketplaceTrophies() {
+  const { success, data } = await listCollectionFiltered(TROPHIES_CHILDREN_COLLECTION, "onSale", "==", true);
+  return success ? data : null;
 }
 
-/*export async function userSignup(userData) {
-  const {email, password} = userData;
-  const salt = bcrypt.genSaltSync(10);
-  const hashPassword = bcrypt.hashSync(password, salt);
-  const userProfile = {...userData, password: hashPassword ,trophyList: [], trophyFavourites: [], buyOffers: [], salesOffers: []};
+export async function getPlayerTrophies(owner) {
+  const { success, data } = await listCollectionFiltered(TROPHIES_CHILDREN_COLLECTION, "owner", "==", owner);
+  return success ? data : null;
+}
 
-  const { success: signupSuccess, data } = await singup(email, password);
+export async function getInstitutionTrophies(owner) {
+  const { success, data } = await listCollectionFiltered(TROPHIES_FATHER_COLLECTION, "creator", "==", owner);
+  return success ? data : null;
+}
 
-  if (signupSuccess) {
-    const profileSuccess = await createObjectWithId(USERS_COLLECTION, userProfile, data);
-    if (profileSuccess.success) {
-      return true;
-    }
-  }
-  return false;
-}*/
 
 export async function getUserProfile(userId) {
   const { success, data } = await getObjectById(USERS_COLLECTION, userId)

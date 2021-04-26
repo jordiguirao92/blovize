@@ -3,7 +3,12 @@ import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 import theme from '../styles/theme';
 
-const Flex = styled.div`
+export const Wrapper = styled.div`
+  width: ${props => props.width ? props.width : ''};
+  height: ${props => props.height ? props.height : '100vh'};
+`
+
+export const Flex = styled.div`
   width: ${props => props.width ? props.width : '100%'};
   height: ${props => props.height ? props.height : ''};
   display: flex;
@@ -14,9 +19,10 @@ const Flex = styled.div`
   padding: ${props => props.padding ? props.padding : ''};
   background-color: ${props => props.backColor ? props.backColor : ''};
   color: ${props => props.color ? props.color : ''};
+  flex-wrap: ${props => props.wrap ? props.wrap : 'nowrap'};
 `
 
-const FlexStyled = styled.div`
+export const FlexStyled = styled.div`
   width: ${props => props.width ? props.width : 'auto'};
   height: ${props => props.height ? props.height : 'auto'};
   display: flex;
@@ -32,14 +38,15 @@ const FlexStyled = styled.div`
   box-shadow: ${props => props.shadow ? props.shadow : '5px 5px 5px grey'};
   background-image: ${props => props.backImage ? props.backImage : ''};
   cursor: ${props => props.cursor ? props.cursor : ''};
+  flex-wrap: ${props => props.wrap ? props.wrap : 'nowrap'};
 `
 
-const LandingStyle = styled(Flex)`
+export const LandingStyle = styled(Flex)`
   background-image: linear-gradient(180deg, #171923 0%, #0707FF 47.92%);
 `
 
 
-const Spacer = styled.div`
+export const Spacer = styled.div`
   height: ${props => {
     if (props.height) {
       return props.height;
@@ -49,28 +56,28 @@ const Spacer = styled.div`
   }};
 `
 
-const H1 = styled.h1`
+export const H1 = styled.h1`
     color:  ${props => props.color ? props.color : theme.colors.white};
  
 `
 
-const H2 = styled.h2`
+export const H2 = styled.h2`
     color:  ${props => props.color ? props.color : theme.colors.black};
     margin: ${props => props.margin ? props.margin : 'auto'};
  
 `
 
-const H3 = styled.h3`
+export const H3 = styled.h3`
     color:  ${props => props.color ? props.color : theme.colors.grey};
     margin: ${props => props.margin ? props.margin : 'auto'};
 `
 
-const H4 = styled.h4`
+export const H4 = styled.h4`
     color:  ${props => props.color ? props.color : theme.colors.black};
     margin: ${props => props.margin ? props.margin : 'auto'};
 `
 
-const Button = styled.button`
+export const Button = styled.button`
   width: ${props => props.width ? props.width : 'auto'};
   height: ${props => props.height ? props.height : 'auto'};
   margin: ${props => props.margin ? props.margin : ''};
@@ -81,26 +88,26 @@ const Button = styled.button`
   cursor: pointer;
 `
 
-const Input = styled.input`
+export const Input = styled.input`
   width: ${props => props.width ? props.width : 'auto'};
   height: ${props => props.height ? props.height : 'auto'};
   border: 1px solid ${props => props.colorBorder ? props.colorBorder : theme.colors.primary};
   border-radius: ${props => props.borderRadius ? props.borderRadius : '7px'};;
 `
 
-const A = styled.a`
+export const A = styled.a`
   text-decoration: none;
   display: flex;
   align-items: center;
 
 `
-const P = styled.p`
+export const P = styled.p`
   color: ${props => props.color ? props.color : theme.colors.black};
   margin: ${props => props.margin ? props.margin : '5px'};
   font-weight: ${props => props.bold ? props.bold : ''};
 `
 
-const FooterStyled = styled.footer`
+export const FooterStyled = styled.footer`
   display: flex;
   flex-direction: ${props => props.direction ? props.direction : 'row'};
   justify-content: ${props => props.justify ? props.justify : 'space-around'};
@@ -111,7 +118,7 @@ const FooterStyled = styled.footer`
   right:0;
 `
 
-const HeaderStyled = styled.header`
+export const HeaderStyled = styled.header`
   display: flex;
   flex-direction: ${props => props.direction ? props.direction : 'row'};
   justify-content: ${props => props.justify ? props.justify : 'space-around'};
@@ -119,21 +126,21 @@ const HeaderStyled = styled.header`
   background-color: ${props => props.backColor ? props.backColor : theme.colors.grey};
 `
 
-const ImageStyled = styled.img`
+export const ImageStyled = styled.img`
   height: ${props => props.height ? props.height : '150px'};
   width: ${props => props.width ? props.width : ''};
   margin: ${props => props.margin ? props.margin : ''};
 `
-const LinkStyled = styled(Link)`
+export const LinkStyled = styled(Link)`
   text-decoration: none;
   color: ${props => props.color ? props.color : ''}; 
 `;
 
-const LiStyled = styled.li`
+export const LiStyled = styled.li`
   list-style: none;
 `
 
-const NavStyled = styled.nav`
+export const NavStyled = styled.nav`
   width: ${props => props.width ? props.width : '100%'};
   height: ${props => props.height ? props.height : '100%'};
   display: flex;
@@ -150,7 +157,7 @@ const NavStyled = styled.nav`
   position: fixed;
 `
 
-const BurguerStyled = styled.button`
+export const BurguerStyled = styled.button`
     display: flex;
     flex-direction: column;
     justify-content: space-around;
@@ -185,35 +192,11 @@ const BurguerStyled = styled.button`
 
 `
 
-const FullDiv = styled.div`
+export const FullDiv = styled.div`
   width: ${props => props.width ? props.width : '25%'};
   height: ${props => props.width ? props.width : '100vh'};
   position: fixed;
   top: 0%;
 `
-const iconSize = 35;
+export const iconSize = 35;
 
-
-export {
-  Flex,
-  FlexStyled,
-  Spacer, 
-  H1,
-  H3,
-  H2,
-  H4,
-  A, 
-  Button,
-  FooterStyled,
-  Input,
-  HeaderStyled,
-  ImageStyled,
-  LandingStyle,
-  LinkStyled,
-  BurguerStyled, 
-  LiStyled,
-  NavStyled,
-  FullDiv, 
-  iconSize,
-  P
-}

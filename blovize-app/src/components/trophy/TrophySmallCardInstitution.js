@@ -1,26 +1,28 @@
+import {AiFillHeart} from 'react-icons/ai'
+
 import {Flex, FlexStyled, ImageStyled, Button, P, LinkStyled} from '../UI';
 import trophyImage from '../../images/trophy.png';
-import Star from './Star';
 
 
-const TrophySmallCard = (props) => {
+const TrophySmallCardInstitution = (props) => {
   const { trophyProps } = props;
-  const {image, name, team, price, id, date, playerName} = trophyProps;
+  const {image, name, team, price, id, date, playerName, likes} = trophyProps;
   const finalDate = new Date(date.seconds*1000);
   const dateString = `${finalDate.getDate()}/${(finalDate.getMonth()) + 1}/${finalDate.getFullYear()}`;
     
     return(
       
       <LinkStyled to={`/detail/${id}`}>
-        <FlexStyled justify='center' direction='column' width='320px' height='350px' padding='10px' margin='10px'>
+        <FlexStyled justify='center' direction='column' width='320px' height='350px' padding='0px 10px' margin='10px'>
           <Flex justify='flex-end'>
-            <Star color={'gold'}/>
+            <P>{likes}</P>
+            <AiFillHeart size={25} style={{fill:'red'}}/>
           </Flex>
           <ImageStyled src={trophyImage} alt='trophy image'/>
           <P bold='bold'>{name}</P>
           <P>{team}</P>
           <P>{playerName}</P>
-          <P>{price}€</P>
+          
           <Flex>
             <P>#{id}</P>
             <P>{dateString}</P>
@@ -30,4 +32,4 @@ const TrophySmallCard = (props) => {
     )
 }
 
-export default TrophySmallCard;
+export default TrophySmallCardInstitution;
