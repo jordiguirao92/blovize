@@ -3,8 +3,8 @@ import {useHistory} from 'react-router-dom';
 import { useSelector } from 'react-redux';
 
 import {Flex, FlexStyled, Button, Input, H3, Spacer, LinkStyled, A, Select, ImageStyled, InputImage} from '../UI';
-import {userSignup} from '../../controllers/user';
 import {SportBranchData} from './SportBranchData';
+import {createTrophy} from '../../controllers/trophy';
 
 const CreateTrophyForm = () => {
 
@@ -14,23 +14,24 @@ const CreateTrophyForm = () => {
     const [file, setFile] = useState('');
     const [addPlayers, setAddPlayers] = useState([]);
     const [formData, setFormData] = useState({
-        trophyTitle:'', 
-        trophyTeam:'', 
-        trophyDate:'', 
-        trophyClassification:'', 
-        trophyBranch:'', 
-        trophyImage: '',
-        trophyDescription:'',
-        userRole: user.userRole === 'institution' ? 'institution' : 'player'
+        name:'', 
+        team:'', 
+        date:'', 
+        classification:'', 
+        branch:'', 
+        image: '',
+        description:'',
+        institution: user.name,
+        creator: user.email
     });
     
     const handleFormSubmit = async (event) => {
         event.preventDefault();
-        const result = await userSignup(formData);
-        console.log('IMTCHLG ~ file: signup.js ~ line 14 ~ handleFormSubmit ~ result', result);
+        //const result = await createTrophy(formData);
+        /*console.log('IMTCHLG ~ file: signup.js ~ line 14 ~ handleFormSubmit ~ result', result);
         if (result) {
           history.push('/main');
-        }
+        }*/
       }
 
     return(
@@ -41,38 +42,38 @@ const CreateTrophyForm = () => {
                     <Flex justify='flex-start' align='flex-start' >
                         <Flex direction='column' align='flex-start' width='auto' margin='0px 10px'>
                             <Flex direction='column' align='flex-start' width='auto'>
-                                <label htmlFor='trophyTitle'>Trophy title</label>
+                                <label htmlFor='name'>Trophy title</label>
                                 <Input width='300px' height='30px' 
-                                    id='trophyTitle' 
-                                    name='trophyTitle' 
+                                    id='name' 
+                                    name='name' 
                                     type='text' 
                                     placeholder='Introduce the name of the trophy' 
-                                    value={formData.trophyTitle} 
-                                    onChange={(event) => setFormData({ ...formData, trophyTitle: event.target.value })}
+                                    value={formData.name} 
+                                    onChange={(event) => setFormData({ ...formData, name: event.target.value })}
                                     />
                             </Flex>
                             <Spacer />
                             <Flex direction='column' align='flex-start' width='auto'>
-                                <label htmlFor='trophyTeam'>Trophy team</label>
+                                <label htmlFor='team'>Trophy team</label>
                                 <Input width='300px' height='30px' 
-                                    id='trophyTeam' 
-                                    name='trophyTeam' 
+                                    id='team' 
+                                    name='team' 
                                     type='text' 
                                     placeholder='Introduce the name of the team' 
-                                    value={formData.trophyTeam} 
-                                    onChange={(event) => setFormData({ ...formData, trophyTeam: event.target.value })}
+                                    value={formData.team} 
+                                    onChange={(event) => setFormData({ ...formData, team: event.target.value })}
                                     />
                             </Flex>
                             <Spacer />
                             <Flex direction='column' align='flex-start' width='auto'>
-                                <label htmlFor='trophyDate'>Trophy date</label>
+                                <label htmlFor='date'>Trophy date</label>
                                 <Input width='300px' height='30px' 
-                                    id='trophyDate' 
-                                    name='trophyDate' 
+                                    id='date' 
+                                    name='date' 
                                     type='datetime-local' 
                                     placeholder='Introduce the date of the trophy' 
-                                    value={formData.trophyDate} 
-                                    onChange={(event) => {setFormData({ ...formData, trophyDate: event.target.value });
+                                    value={formData.date} 
+                                    onChange={(event) => {setFormData({ ...formData, date: event.target.value });
                                     console.log(event.target.value);
                                     console.log(new Date(event.target.value))
                                     console.log(new Date(event.target.value).getTime())
@@ -82,20 +83,20 @@ const CreateTrophyForm = () => {
                         </Flex>
                         <Flex direction='column' align='flex-start' width='auto'>
                             <Flex direction='column' align='flex-start' width='auto'>
-                                <label htmlFor='trophyClassification'>Trophy classification</label>
+                                <label htmlFor='classification'>Trophy classification</label>
                                 <Input width='300px' height='30px' 
-                                    id='trophyClassification' 
-                                    name='trophyClassification' 
+                                    id='classification' 
+                                    name='classification' 
                                     type='text '
                                     placeholder='Introduce the classification' 
-                                    value={formData.trophyClassification} 
-                                    onChange={(event) => setFormData({ ...formData, trophyClassification: event.target.value })}
+                                    value={formData.classification} 
+                                    onChange={(event) => setFormData({ ...formData, classification: event.target.value })}
                                     />
                             </Flex>
                             <Spacer />
                             <Flex direction='column' align='flex-start' width='auto'>
-                                <label htmlFor='trophyClassification'>Trophy branch</label>
-                                <Select name='trophyBranch' width='300px' height='30px' onChange={(event) => setFormData({ ...formData, trophyBranch: event.target.value })}>
+                                <label htmlFor='branch'>Trophy branch</label>
+                                <Select name='branch' width='300px' height='30px' onChange={(event) => setFormData({ ...formData, branch: event.target.value })}>
                                     {SportBranchData.map((sport) => {
                                         return(
                                             <option value={sport.value}>{sport.name}</option>
@@ -106,14 +107,14 @@ const CreateTrophyForm = () => {
                         </Flex>
                         <Flex direction='column' align='flex-start' width='auto' margin='0px 10px'>
                             <Flex direction='column' align='flex-start' width='auto'>
-                                <label htmlFor='trophyImage'>Trophy Image</label>
+                                <label htmlFor='image'>Trophy Image</label>
                                 <InputImage width='300px' height='30px' 
-                                    id='trophyImage' 
-                                    name='trophyImage' 
+                                    id='image' 
+                                    name='image' 
                                     type='file'
-                                    value={formData.trophyImage}
+                                    value={formData.image}
                                     onChange={(event) => {
-                                        setFormData({ ...formData, trophyImage: event.target.value });
+                                        setFormData({ ...formData, image: event.target.value });
                                         setFile(URL.createObjectURL(event.target.files[0]));
                                         }}
                                     />
@@ -125,14 +126,14 @@ const CreateTrophyForm = () => {
                         </Flex>
                     </Flex>
                     <Flex direction='column' align='flex-start' margin='10px'>
-                                <label htmlFor='trophyDescription'>Trophy description</label>
+                                <label htmlFor='description'>Trophy description</label>
                                 <Input width='600px' height='30px' 
-                                    id='trophyDescription' 
-                                    name='trophyDescription' 
+                                    id='description' 
+                                    name='description' 
                                     type='text' 
                                     placeholder='Introduce a description of the trophy' 
-                                    value={formData.trophyDescription} 
-                                    onChange={(event) => setFormData({ ...formData, trophyDescription: event.target.value })}
+                                    value={formData.description} 
+                                    onChange={(event) => setFormData({ ...formData, description: event.target.value })}
                                     />
                     </Flex>
                     <Spacer />

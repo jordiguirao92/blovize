@@ -18,7 +18,7 @@ const HeaderMain = () => {
                 <h3>Blovize</h3>
             </div>
             {user 
-                ? <span>Hello {user.name}<Button onClick={() => {logout(); history.push('/');}}>Log out</Button></span>
+                ? <span>Hello {user.name} <Button onClick={() => {logout(); history.push('/');}}>Log out</Button></span>
                 : <LinkStyled to="/login"><Button>Login</Button></LinkStyled>
             }
         </HeaderStyled>

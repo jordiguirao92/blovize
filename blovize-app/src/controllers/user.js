@@ -8,7 +8,7 @@ export async function userSignup(userData) {
   const {email, password} = userData;
   const salt = bcrypt.genSaltSync(10);
   const hashPassword = bcrypt.hashSync(password, salt);
-  const userProfile = {...userData, password: hashPassword ,trophyList: [], trophyFavourites: [], buyOffers: [], salesOffers: []};
+  const userProfile = {...userData, password: hashPassword ,trophyList: [], trophyFavourites: [], trophyLiked: [], buyOffers: [], salesOffers: []};
 
   const { success: signupSuccess, data } = await singup(email, password);
 

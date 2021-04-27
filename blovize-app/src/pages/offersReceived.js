@@ -1,49 +1,42 @@
 import { useState, useEffect } from 'react';
-import {useDispatch} from 'react-redux';
-import {useHistory} from 'react-router-dom';
-
-import {registerAuthObserver} from '../services/auth';
-import { setUser, clearUser } from '../redux/user/userActions';
-import { getUserProfile } from '../controllers/user';
+import { useSelector } from 'react-redux';
 
 import MainLayout from '../components/layout/MainLayout';
 import ProfileCard from '../components/ProfileCard';
-import TrophiesGallery from '../components/trophy/TrophiesGallery';
-import Loading from '../components/Loading';
-import OfferCardReceived from '../components/offers/OfferCardReceived'
-
-
+import OfferCardReceived from '../components/offers/OfferCardReceived';
+import {getOffersReceived} from '../controllers/offers';
 
 
 const OffersReceived = () => {
-    /*const dispatch = useDispatch();
-    const history = useHistory();
-    const [isLoading, setIsLoading] = useState(true);
+  const [offersReceived, setOffersReceived] = useState([]);
+  const user = useSelector(state => state.user);
 
     useEffect(() => {
-        registerAuthObserver(async (user) => {
-          if (user) {
-            console.log('IMTCHLG ~ El usuario ha hecho login: ', user);
-            const userProfile = await getUserProfile(user.uid);
-            dispatch(setUser(userProfile));
-          } else {
-            console.log('IMTCHLG ~ El usuario ha hecho logout: ');
-            dispatch(clearUser());
-            history.push('/');
-            
-          }
-          setIsLoading(false)
-        })
+      getOffers();
       }, []);
 
-    if (isLoading) return <Loading />;*/
+      const getOffers = async () => {
+        try{
+            const offers = await getOffersReceived(user.email);
+            setOffersReceived(offers);
+        } catch (error) {
+          return error;
+        }
+      }
 
-
+  
     return(
         <>
             <MainLayout>
                     <ProfileCard />
-                    <OfferCardReceived />
+                    {offersReceived.map((offer) => {
+                      return(
+                          <OfferCardReceived 
+                            key={offer.id}
+                            offerProps={offer}
+                          />
+                          )
+                    })}
             </MainLayout>
         </>  
     )

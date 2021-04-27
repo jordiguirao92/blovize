@@ -15,8 +15,8 @@ const TrophiesGallery = (props) => {
             return(
               isPlayer ?
                 <TrophySmallCard 
-                  key={trophy.id}
-                  trophyProps={trophy}
+                  key={trophy[0].id}
+                  trophyProps={trophy[0]}
                 />
                 :
                 <TrophySmallCardInstitution 

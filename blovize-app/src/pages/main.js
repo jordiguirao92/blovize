@@ -49,9 +49,6 @@ const MainPage = () => {
             <MainLayout>
                     <Landing />
                     <ProfileCard />
-                    <OfferCardReceived />
-                    <OfferCardSend />
-                    <TrophyClaim />
             </MainLayout>
         </>
         

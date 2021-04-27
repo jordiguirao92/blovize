@@ -5,7 +5,7 @@ import MainLayout from '../components/layout/MainLayout';
 import ProfileCard from '../components/ProfileCard';
 import TrophiesGallery from '../components/trophy/TrophiesGallery';
 import Loading from '../components/Loading';
-import getFavouriteTrophies from '../controllers/trophy';
+import {getFavouriteTrophies} from '../controllers/trophy';
 
 
 
@@ -15,17 +15,16 @@ const FavouriteTrophies = () => {
   const [trophies, setTrophies] = useState([]);
 
   useEffect(() => {
-    getFavouriteTrophies();
-    
+    getTrophies();
   }, []);
 
-  const getFavouriteTrophies = async () => {
+  const getTrophies = async () => {
     try {
       const trophiesArray = [];
-      for (let i = 0; i < user.trophyFavourites.length; i+=1){
-        const result = await getFavouriteTrophies(i);
+      user.trophyFavourites.forEach(async trophy => {
+        const result = await getFavouriteTrophies(trophy);
         trophiesArray.push(result);
-      }
+      })
       setTrophies(trophiesArray);
       console.log(trophies);
     } catch (error) {
@@ -37,7 +36,7 @@ const FavouriteTrophies = () => {
         <>
             <MainLayout>
                     <ProfileCard />
-                    {/*<TrophiesGallery />*/}
+                    <TrophiesGallery trophiesCollection={trophies} isPlayer={user.userRole === 'player' ? true : false}/>
             </MainLayout>
         </>  
     )
