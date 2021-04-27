@@ -31,10 +31,9 @@ const CreatedTrophies= () => {
 
 
     return(
-        <>
+        <> 
             <MainLayout>
                     <ProfileCard />
-                    <Flex direction='column' justify='space-evenly'>
                       {trophies.map((trophy) => {
                           return(
                               <TrophyControlCard 
@@ -43,7 +42,6 @@ const CreatedTrophies= () => {
                               />
                           )
                       })}
-                    </Flex>
             </MainLayout>
         </>  
     )

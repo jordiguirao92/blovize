@@ -51,8 +51,6 @@ const MainPage = () => {
                     <ProfileCard />
                     <OfferCardReceived />
                     <OfferCardSend />
-                    <TrophyControlCard />
-                    <TrophyControlBoardCard />
                     <TrophyClaim />
             </MainLayout>
         </>

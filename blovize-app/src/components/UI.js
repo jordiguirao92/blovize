@@ -94,6 +94,22 @@ export const Input = styled.input`
   border: 1px solid ${props => props.colorBorder ? props.colorBorder : theme.colors.primary};
   border-radius: ${props => props.borderRadius ? props.borderRadius : '7px'};;
 `
+export const InputImage = styled.input`
+  width: ${props => props.width ? props.width : 'auto'};
+  height: ${props => props.height ? props.height : 'auto'};
+  border: 1px solid ${props => props.colorBorder ? props.colorBorder : theme.colors.primary};
+  border-radius: ${props => props.borderRadius ? props.borderRadius : '7px'};
+  padding: 5px 8px;
+  cursor: pointer;
+  
+`
+
+export const Select = styled.select`
+  width: ${props => props.width ? props.width : 'auto'};
+  height: ${props => props.height ? props.height : 'auto'};
+  border: 1px solid ${props => props.colorBorder ? props.colorBorder : theme.colors.primary};
+  border-radius: ${props => props.borderRadius ? props.borderRadius : '7px'};;
+`
 
 export const A = styled.a`
   text-decoration: none;
@@ -127,7 +143,7 @@ export const HeaderStyled = styled.header`
 `
 
 export const ImageStyled = styled.img`
-  height: ${props => props.height ? props.height : '150px'};
+  height: ${props => props.height ? props.height : '200px'};
   width: ${props => props.width ? props.width : ''};
   margin: ${props => props.margin ? props.margin : ''};
 `
@@ -155,6 +171,15 @@ export const NavStyled = styled.nav`
   left: ${props => props.left ? props.left : '-100%'};;
   transition: 600ms;
   position: fixed;
+`
+
+export const FullDiv = styled.div`
+  width: ${props => props.width ? props.width : '25%'};
+  height: ${props => props.width ? props.width : '100vh'};
+  position: fixed;
+  top: 0%;
+  left: ${props => props.left ? props.left : '-100%'};;
+  transition: 600ms;
 `
 
 export const BurguerStyled = styled.button`
@@ -192,11 +217,5 @@ export const BurguerStyled = styled.button`
 
 `
 
-export const FullDiv = styled.div`
-  width: ${props => props.width ? props.width : '25%'};
-  height: ${props => props.width ? props.width : '100vh'};
-  position: fixed;
-  top: 0%;
-`
 export const iconSize = 35;
 

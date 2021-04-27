@@ -8,8 +8,7 @@ import { getUserProfile } from '../controllers/user';
 
 import MainLayout from '../components/layout/MainLayout';
 import ProfileCard from '../components/ProfileCard';
-import TrophiesGallery from '../components/trophy/TrophiesGallery';
-import Loading from '../components/Loading';
+import CreateTrophyForm from '../components/form/CreateTrophyForm';
 
 
 
@@ -42,7 +41,7 @@ const TrophiesCreator = () => {
         <>
             <MainLayout>
                     <ProfileCard />
-                    {/*<TrophiesGallery />*/}
+                    <CreateTrophyForm />
             </MainLayout>
         </>  
     )

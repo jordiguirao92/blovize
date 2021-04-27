@@ -7,9 +7,10 @@ import {FullDiv} from '../UI';
 
 const SideBar = () => {
     const user = useSelector(state => state.user);
+    const sidebar = useSelector(state => state.sidebar);
         
     return(
-        <FullDiv>
+        <FullDiv left={sidebar === true ? '0%' : '-100%'}>
         {user.userRole === 'player' ? <SideBarPlayer /> : <SideBarInstitution />}
         </FullDiv>
     )

@@ -1,17 +1,22 @@
-import {Flex, FlexStyled, ImageStyled, Button} from '../UI';
-import qrImage from '../../images/qrcode.png'
+import QRCode from "react-qr-code";
 
-const TrophyControlBoardCard = () => {
+import {Flex, FlexStyled, ImageStyled, Button, P, LinkStyled} from '../UI';
+
+const TrophyControlBoardCard = (props) => {
+  const {trophyProps} = props;
+  const {id, playerName, isClaimed, claimDate, claimCode} = trophyProps;
     
     return(
       
-      <FlexStyled justify='space-around' margin='50px'>
-        <p>ID: 22</p>
-        <p>Jordi Guirao Muns</p>
-        <p>Claim code: edefrt</p>
-        <ImageStyled height='50px' src={qrImage} alt='QR CODE'/>
-        <Button width='100px' backColor='green' colorBorder='green'>Claimed</Button>
-        <Button width='100px' backColor='red' colorBorder='red'>No claimed</Button>
+      <FlexStyled justify='space-around' margin='30px 50px' height='50px'>
+        <P>#{id}</P>
+        <P>{playerName}</P>
+        <P>Claim code:{claimCode}</P>
+         <LinkStyled><QRCode value={claimCode} size={30}/></LinkStyled>
+        {isClaimed ? 
+        <FlexStyled width='100px' justify='center' backColor='green' colorBorder='green' color={props => props.theme.colors.white} margin='0px'>Claimed</FlexStyled>
+        : <FlexStyled width='100px' justify='center' backColor='red' colorBorder='red' color={props => props.theme.colors.white} margin='0px'>No claimed</FlexStyled>
+        }
       </FlexStyled>
     )
 }

@@ -20,6 +20,11 @@ export async function getInstitutionTrophies(owner) {
   return success ? data : null;
 }
 
+export async function getChildrenTrophies(id) {
+  const { success, data } = await listCollectionFiltered(TROPHIES_CHILDREN_COLLECTION, "fatherId", "==", id);
+  return success ? data : null;
+}
+
 
 export async function getUserProfile(userId) {
   const { success, data } = await getObjectById(USERS_COLLECTION, userId)
