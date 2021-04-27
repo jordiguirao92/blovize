@@ -7,8 +7,10 @@ const TrophiesGallery = (props) => {
   const { trophiesCollection, isPlayer } = props;
   console.log(trophiesCollection);
 
+ 
+
     return(
-      <Flex wrap='wrap'>
+      <Flex wrap='wrap' align='stretch'>
         {trophiesCollection.map((trophy) => {
             return(
               isPlayer ?

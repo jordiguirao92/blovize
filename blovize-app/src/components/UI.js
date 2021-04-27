@@ -94,6 +94,13 @@ export const Input = styled.input`
   border: 1px solid ${props => props.colorBorder ? props.colorBorder : theme.colors.primary};
   border-radius: ${props => props.borderRadius ? props.borderRadius : '7px'};;
 `
+export const TextArea = styled.textarea`
+  width: ${props => props.width ? props.width : 'auto'};
+  height: ${props => props.height ? props.height : 'auto'};
+  border: 1px solid ${props => props.colorBorder ? props.colorBorder : theme.colors.primary};
+  border-radius: ${props => props.borderRadius ? props.borderRadius : '7px'};;
+`
+
 export const InputImage = styled.input`
   width: ${props => props.width ? props.width : 'auto'};
   height: ${props => props.height ? props.height : 'auto'};
@@ -143,7 +150,8 @@ export const HeaderStyled = styled.header`
 `
 
 export const ImageStyled = styled.img`
-  height: ${props => props.height ? props.height : '200px'};
+  height: ${props => props.height ? props.height : '150px'};
+  max-width: ${props => props.maxWidth ? props.maxWidth : '100%'};
   width: ${props => props.width ? props.width : ''};
   margin: ${props => props.margin ? props.margin : ''};
 `

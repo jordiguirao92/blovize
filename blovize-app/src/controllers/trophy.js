@@ -25,8 +25,7 @@ export async function getChildrenTrophies(id) {
   return success ? data : null;
 }
 
-
-export async function getUserProfile(userId) {
-  const { success, data } = await getObjectById(USERS_COLLECTION, userId)
+export async function getFavouriteTrophies(id) {
+  const { success, data } = await listCollectionFiltered(TROPHIES_CHILDREN_COLLECTION, "id", "==", id);
   return success ? data : null;
 }

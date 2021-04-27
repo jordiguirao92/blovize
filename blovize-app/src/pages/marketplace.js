@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react';
+import { useSelector } from 'react-redux';
 import {useDispatch} from 'react-redux';
 import {useHistory} from 'react-router-dom';
 
@@ -15,7 +16,10 @@ const Marketplace = () => {
     //const dispatch = useDispatch();
     //const history = useHistory();
     //const [isLoading, setIsLoading] = useState(true);
+    const user = useSelector(state => state.user);
+    console.log(user);
     const [trophies, setTrophies] = useState([]);
+    
 
     useEffect(() => {
       getTrophies();
@@ -27,11 +31,12 @@ const Marketplace = () => {
         console.log(trophies);
       }
 
+
     return(
         <>
             <MainLayout>
                     <ProfileCard />
-                    <TrophiesGallery trophiesCollection={trophies}/>
+                    <TrophiesGallery trophiesCollection={trophies} isPlayer={user.userRole === 'player' ? true : false}/>
             </MainLayout>
         </>  
     )

@@ -35,7 +35,7 @@ const CreateTrophyForm = () => {
 
     return(
         <Flex justify='center'>
-            <FlexStyled direction='column' justify='center' align='flex-start' width='90%'>
+            <FlexStyled direction='column' justify='center' width='90%'>
                 <H3 margin='50px auto'>Trophies Creator Form</H3>
                 <form onSubmit={handleFormSubmit}>
                     <Flex justify='flex-start' align='flex-start' >
