@@ -10,7 +10,6 @@ import {updateUserProfile} from '../../controllers/user';
 
 const TrophySmallCard = (props) => {
   const user = useSelector(state => state.user);
-  console.log(user);
   const [likedTrophies, setLikedTrophies] = useState(user.trophyLiked);
   const [favouriteTrophies, setFavouriteTrophies] = useState(user.trophyFavourites);
   const { trophyProps } = props;

@@ -19,6 +19,7 @@ const OffersReceived = () => {
         try{
             const offers = await getOffersReceived(user.email);
             setOffersReceived(offers);
+            console.log(offers);
         } catch (error) {
           return error;
         }

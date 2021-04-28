@@ -16,17 +16,18 @@ const FavouriteTrophies = () => {
 
   useEffect(() => {
     getTrophies();
+    console.log(trophies);
+
   }, []);
 
   const getTrophies = async () => {
     try {
       const trophiesArray = [];
       user.trophyFavourites.forEach(async trophy => {
-        const result = await getFavouriteTrophies(trophy);
+        const [result] = await getFavouriteTrophies(trophy);
         trophiesArray.push(result);
       })
       setTrophies(trophiesArray);
-      console.log(trophies);
     } catch (error) {
       return error;
     }  

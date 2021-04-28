@@ -1,5 +1,5 @@
 import { singup } from '../services/auth';
-import { createObjectWithId, getObjectById, listCollectionFiltered } from '../services/db';
+import { createObjectWithId, getObjectById, listCollectionFiltered, updateCollectionObject } from '../services/db';
 
 const USERS_COLLECTION = 'profiles';
 const TROPHIES_CHILDREN_COLLECTION = 'trophiesChildren';
@@ -33,11 +33,14 @@ export async function getTrophiesById(id) {
 }
 
 
-
-//Pendiente
 export async function getFavouriteTrophies(id) {
   const { success, data } = await listCollectionFiltered(TROPHIES_CHILDREN_COLLECTION, "id", "==", id);
   return success ? data : null;
+}
+
+export async function updateTrophyDetails(trophyId, values) {
+  await updateCollectionObject(TROPHIES_CHILDREN_COLLECTION, trophyId, values);
+  return {success: true}
 }
 
 //Pendiente

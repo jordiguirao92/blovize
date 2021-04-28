@@ -1,4 +1,5 @@
 import { FcLike, FcShop, FcSettings, FcAddImage, FcRating, FcExternal, FcDownload} from 'react-icons/fc';
+import {BsFillStarFill} from 'react-icons/bs'
 
 import {iconSize} from '../UI'
 
@@ -16,7 +17,7 @@ export const SidebarDataPlayer = [
     {
       title: 'Favourites Trophies',
       path: '/favourites-trophies',
-      icon: <FcLike size={iconSize}/>,
+      icon: <BsFillStarFill size={iconSize} style={{fill: 'gold' }} />
     },
     {
       title: 'Offers Received',

@@ -1,16 +1,37 @@
-import {Flex, FlexStyled, Button} from '../UI';
+import { useState, useEffect } from 'react';
 
-const OfferCardSend = () => {
+import {Flex, FlexStyled, Button, P} from '../UI';
+import {getTrophiesById} from '../../controllers/trophy';
+
+const OfferCardSend = ({offerProps}) => {
+  const [trophies, setTrophies] = useState([]);
+
+  useEffect(() => {
+    getTrophy();
+    }, []);
+
+    const getTrophy = async () => {
+      try{
+          const [result] = await getTrophiesById(offerProps.trophy);
+          setTrophies(result);
+          console.log(result);
+      } catch (error) {
+        return error;
+      }
+    }
     
     return(
       
       <FlexStyled justify='space-around' margin='50px'>
-        <p>ID: 22</p>
-        <p>UEFA Champions League 2020</p>
-        <p>Real Madrid</p>
-        <p>15-05-2021</p>
-        <p>25€</p>
-        <p>Pending</p>
+        <P>#{offerProps.id}</P>
+        <P bold='bold'>{trophies.name}</P>
+        <P>{trophies.team}</P>
+        <P>{trophies.playerName}</P>
+        <P>{offerProps.offerPrice}€</P>
+        {offerProps.offerPrice === 'closed' ? 
+          <P color='green' bold='bold'>Closed</P> : offerProps.offerPrice === 'rejected' ? 
+          <P color='red' bold='bold'>Rejected</P> : <P color='orange' bold='bold'>Pending</P> 
+        }
       </FlexStyled>
     )
 }

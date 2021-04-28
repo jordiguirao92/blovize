@@ -6,7 +6,6 @@ import TrophySmallCardInstitution from './TrophySmallCardInstitution';
 const TrophiesGallery = (props) => {
   const { trophiesCollection, isPlayer } = props;
   console.log(trophiesCollection);
-
  
 
     return(
@@ -15,8 +14,8 @@ const TrophiesGallery = (props) => {
             return(
               isPlayer ?
                 <TrophySmallCard 
-                  key={trophy[0].id}
-                  trophyProps={trophy[0]}
+                  key={trophy.id}
+                  trophyProps={trophy}
                 />
                 :
                 <TrophySmallCardInstitution 

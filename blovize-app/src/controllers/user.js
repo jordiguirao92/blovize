@@ -1,6 +1,6 @@
 import bcrypt from 'bcryptjs';
 import { singup } from '../services/auth';
-import { createObjectWithId, getObjectById, updateCollectionObject } from '../services/db';
+import { createObjectWithId, getObjectById, updateCollectionObject, listCollectionFiltered } from '../services/db';
 
 const USERS_COLLECTION = 'profiles';
 
@@ -23,6 +23,11 @@ export async function userSignup(userData) {
 
 export async function getUserProfile(userId) {
   const { success, data } = await getObjectById(USERS_COLLECTION, userId)
+  return success ? data : null;
+}
+
+export async function getUserProfileByEmail(userEmail) {
+  const { success, data } = await listCollectionFiltered(USERS_COLLECTION, 'email', '==', userEmail);
   return success ? data : null;
 }
 
