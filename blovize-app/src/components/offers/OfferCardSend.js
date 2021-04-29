@@ -23,13 +23,13 @@ const OfferCardSend = ({offerProps}) => {
     return(
       
       <FlexStyled justify='space-around' margin='50px'>
-        <P>#{offerProps.id}</P>
+        <P>#{trophies.id}</P>
         <P bold='bold'>{trophies.name}</P>
         <P>{trophies.team}</P>
         <P>{trophies.playerName}</P>
         <P>{offerProps.offerPrice}€</P>
-        {offerProps.offerPrice === 'closed' ? 
-          <P color='green' bold='bold'>Closed</P> : offerProps.offerPrice === 'rejected' ? 
+        {offerProps.status === 'closed' ? 
+          <P color='green' bold='bold'>Closed</P> : offerProps.status === 'rejected' ? 
           <P color='red' bold='bold'>Rejected</P> : <P color='orange' bold='bold'>Pending</P> 
         }
       </FlexStyled>

@@ -12,7 +12,7 @@ const CreateTrophyForm = () => {
     const history = useHistory();
     const [error, setError] = useState('');
     const [file, setFile] = useState('');
-    const [addPlayers, setAddPlayers] = useState([]);
+    const [addPlayers, setAddPlayers] = useState(0);
     const [formData, setFormData] = useState({
         name:'', 
         team:'', 
@@ -172,9 +172,16 @@ const CreateTrophyForm = () => {
                                 />
                         </Flex>
                         <Flex align='flex-end' margin='0px 10px'>
-                            <Button width='100px' height='30px'>Add player</Button>  
+                            <Button width='100px' height='30px' onClick={() => setAddPlayers(addPlayers + 1) }>Add player</Button>  
                         </Flex>
                     </Flex>
+                    <>
+                    {for(let i = 0; i <= addPlayers; i+=1){
+                        <PlayersForm id={i}/>
+                    }}
+                    </>
+
+                    
                  
                     <Spacer />
                     <Flex direction='column' align='center'>
@@ -190,3 +197,49 @@ const CreateTrophyForm = () => {
 }
 
 export default CreateTrophyForm;
+
+
+const PlayersForm = ({id}) => {
+
+    return (
+        <Flex  align='flex-end' margin='10px'>
+                        <Flex direction='column' align='flex-start' >
+                            <label htmlFor={`playerName${id}`}>Player {id} name</label>
+                            <Input width='300px' height='30px' 
+                                id={`playerName${id}`} 
+                                name={`playerName${id}`} 
+                                type='text' 
+                                placeholder='Introduce the name of the player' 
+                                value={formData.playerName} 
+                                onChange={(event) => setFormData({ ...formData, playerName: event.target.value })}
+                                />
+                        </Flex>
+                        <Flex direction='column' align='flex-start' margin='0px 10px'>
+                            <label htmlFor={`playerEmail${id}`}>Player {id} Blovize email</label>
+                            <Input width='300px' height='30px' 
+                                id={`playerEmail${id}`} 
+                                name={`playerEmail${id}`} 
+                                type='text' 
+                                placeholder='Introduce the player user Blovize email (if exist)' 
+                                value={formData.namePlayer} 
+                                onChange={(event) => setFormData({ ...formData, playerEmail: event.target.value })}
+                                />
+                        </Flex>
+                        <Flex direction='column' align='flex-start'>
+                            <label htmlFor={`numberTrophies${id}`}>Number of trophies</label>
+                            <Input width='260px' height='30px' 
+                                id={`numberTrophies${id}`} 
+                                name={`numberTrophies${id}`} 
+                                type='text' 
+                                placeholder='Introduce the number of trophies to create' 
+                                value={formData.numerTrophies} 
+                                onChange={(event) => setFormData({ ...formData, numerTrophies: event.target.value })}
+                                />
+                        </Flex>
+                        <Flex align='flex-end' margin='0px 10px'>
+                            <Button width='100px' height='30px'>Add player</Button>  
+                        </Flex>
+                    </Flex>
+    )
+    
+}

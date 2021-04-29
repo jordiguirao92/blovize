@@ -82,14 +82,10 @@ export async function updateCollectionObject(collection, id, values) {
   try {
     const db = getDb();
     const querySnapshot = await db.collection(collection).doc(id).update(values);
-    /*const data = [];
-    querySnapshot.forEach((doc) => {
-      data.push({ id: doc.id, ...doc.data() })  
-    });*/
     return { success: true};
 
   } catch(error) {
-    console.log('IMTCHLG ~ file: db.js ~ line 59 ~ listCollectionFiltered ~ error', error);
+    console.log(error);
     return { success: false };
   }
 }
