@@ -1,6 +1,7 @@
 import {useState, useEffect } from 'react';
 import {useHistory} from 'react-router-dom';
 import { useSelector } from 'react-redux';
+import firebase from 'firebase';
 
 import {Flex, FlexStyled, Button, Input, H3, Spacer, LinkStyled, A, TextArea, ImageStyled, InputImage} from '../UI';
 import {userSignup, updateUserProfile} from '../../controllers/user';
@@ -11,22 +12,54 @@ const ConfigurationProfileForm = ({role}) => {
     const history = useHistory();
     const [error, setError] = useState('');
     const [file, setFile] = useState('');
+    const [uploadValue, setUploadValue] = useState(-1);
     const [formData, setFormData] = useState({
         name:'', 
         nickName:'', 
-        profileImage:'', 
+        profileImage: '', 
         description:'', 
     });
     
     const handleFormSubmit = async (event) => {
         event.preventDefault();
-        console.log(formData);
-        //const result = await updateUserProfile(user.id, formData);
-        //console.log('IMTCHLG ~ file: signup.js ~ line 14 ~ handleFormSubmit ~ result', result);
-        /*if (result) {
+        const uploadedFormData = {...formData, name: formData.name ? formData.name : user.name, 
+            nickName: formData.nickName ? formData.nickName : user.nickName,
+            description: formData.description ? formData.description : user.description };
+        const result = await updateUserProfile(user.id, uploadedFormData);
+        if (result) {
           history.push('/main');
-        }*/
+        }
       }
+
+    const handleUpload = async (event) => {
+        const file = event.target.files[0]; 
+        const storageRef = firebase.storage().ref(`/images//profiles/${user.email}`);
+        const task = storageRef.put(file);
+
+        task.on('state_changed', snapshot => {
+            let percentage = (snapshot.bytesTransferred / snapshot.totalBytes)*100;
+            setUploadValue(percentage);
+            switch (snapshot.state) {
+                case firebase.storage.TaskState.PAUSED: // or 'paused'
+                  console.log('Upload is paused');
+                  break;
+                case firebase.storage.TaskState.RUNNING: // or 'running'
+                  console.log('Upload is running');
+                  break;
+              }   
+        }, error => {
+            console.log(error.message);
+        },
+         async () => {
+            setUploadValue(100);
+            const fileURL = await task.snapshot.ref.getDownloadURL();
+            setFile(fileURL);
+            console.log(fileURL);
+            setUploadValue(-1);
+            setFormData({ ...formData, profileImage: fileURL});
+         }
+        )
+    }
 
     return(
         <Flex justify='center' margin='20px 0px'>
@@ -66,14 +99,13 @@ const ConfigurationProfileForm = ({role}) => {
                                     id='profileImage' 
                                     name='profileImage' 
                                     type='file'
-                                    value={formData.profileImage}
                                     onChange={(event) => {
-                                        setFormData({ ...formData, profileImage: event.target.value });
-                                        setFile(URL.createObjectURL(event.target.files[0]));
+                                        handleUpload(event);
                                         }}
                                     />
                             </Flex>
                             <Flex direction='column' align='center' margin='5px 0px'>
+                                {uploadValue >= 0 && <progress value={uploadValue} max='100'></progress>}
                                 <ImageStyled src={file}/>
                             </Flex>
                         </Flex>

@@ -1,6 +1,7 @@
 import {useState, useEffect } from 'react';
 import {useHistory} from 'react-router-dom';
 import { useSelector } from 'react-redux';
+import firebase from 'firebase';
 
 import {Flex, FlexStyled, Button, Input, H3, Spacer, LinkStyled, A, Select, ImageStyled, InputImage} from '../UI';
 import {SportBranchData} from './SportBranchData';
@@ -12,6 +13,7 @@ const CreateTrophyForm = () => {
     const history = useHistory();
     const [error, setError] = useState('');
     const [file, setFile] = useState('');
+    const [uploadValue, setUploadValue] = useState(-1);
     const [addPlayers, setAddPlayers] = useState(0);
     const [formData, setFormData] = useState({
         name:'', 
@@ -33,6 +35,36 @@ const CreateTrophyForm = () => {
           history.push('/main');
         }*/
       }
+
+    const handleUpload = async (event) => {
+        const file = event.target.files[0]; 
+        const storageRef = firebase.storage().ref(`/images//trophies/${formData.name}`);
+        const task = storageRef.put(file);
+
+        task.on('state_changed', snapshot => {
+            let percentage = (snapshot.bytesTransferred / snapshot.totalBytes)*100;
+            setUploadValue(percentage);
+            switch (snapshot.state) {
+                case firebase.storage.TaskState.PAUSED: // or 'paused'
+                  console.log('Upload is paused');
+                  break;
+                case firebase.storage.TaskState.RUNNING: // or 'running'
+                  console.log('Upload is running');
+                  break;
+              }   
+        }, error => {
+            console.log(error.message);
+        },
+         async () => {
+            setUploadValue(100);
+            const fileURL = await task.snapshot.ref.getDownloadURL();
+            setFile(fileURL);
+            console.log(fileURL);
+            setUploadValue(-1);
+            setFormData({ ...formData, image: fileURL});
+         }
+        )
+    }
 
     return(
         <Flex justify='center'>
@@ -112,15 +144,14 @@ const CreateTrophyForm = () => {
                                     id='image' 
                                     name='image' 
                                     type='file'
-                                    value={formData.image}
                                     onChange={(event) => {
-                                        setFormData({ ...formData, image: event.target.value });
-                                        setFile(URL.createObjectURL(event.target.files[0]));
+                                        handleUpload(event);
                                         }}
                                     />
                             </Flex>
                             <Spacer />
                             <Flex direction='column' align='center' margin='5px 0px'>
+                                {uploadValue >= 0 && <progress value={uploadValue} max='100'></progress>}
                                 <ImageStyled src={file}/>
                             </Flex>
                         </Flex>
@@ -175,14 +206,8 @@ const CreateTrophyForm = () => {
                             <Button width='100px' height='30px' onClick={() => setAddPlayers(addPlayers + 1) }>Add player</Button>  
                         </Flex>
                     </Flex>
-                    <>
-                    {for(let i = 0; i <= addPlayers; i+=1){
-                        <PlayersForm id={i}/>
-                    }}
-                    </>
-
-                    
-                 
+                    {/*INTRODUCIR BUCLE FOR PARA PLAYERSFORM */}
+                                     
                     <Spacer />
                     <Flex direction='column' align='center'>
                         {error && <p>&nbsp;{error}</p>}
@@ -198,8 +223,13 @@ const CreateTrophyForm = () => {
 
 export default CreateTrophyForm;
 
+/*                  <>
+                    {for(let i = 0; i <= addPlayers; i+=1){
+                        <PlayersForm id={i}/>
+                    }}
+                    </> */
 
-const PlayersForm = ({id}) => {
+/*const PlayersForm = ({id}) => {
 
     return (
         <Flex  align='flex-end' margin='10px'>
@@ -242,4 +272,4 @@ const PlayersForm = ({id}) => {
                     </Flex>
     )
     
-}
+}*/

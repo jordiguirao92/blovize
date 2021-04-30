@@ -4,8 +4,8 @@ import { createObjectWithId, getObjectById, listCollectionFiltered, updateCollec
 const USERS_COLLECTION = 'profiles';
 const TROPHIES_CHILDREN_COLLECTION = 'trophiesChildren';
 const TROPHIES_FATHER_COLLECTION = 'trophiesFather';
-const TROPHIES_CHILDREN_ID_COUNT = 10;
-const TROPHIES_FATHER_ID_COUNT = 300;
+let TROPHIES_CHILDREN_ID_COUNT = 10;
+export let TROPHIES_FATHER_ID_COUNT = 300;
 
 export async function getMarketplaceTrophies() {
   const { success, data } = await listCollectionFiltered(TROPHIES_CHILDREN_COLLECTION, "onSale", "==", true);

@@ -152,6 +152,7 @@ export const HeaderStyled = styled.header`
 export const ImageStyled = styled.img`
   height: ${props => props.height ? props.height : '150px'};
   max-width: ${props => props.maxWidth ? props.maxWidth : '100%'};
+  border-radius: ${props => props.borderRadius ? props.borderRadius : ''};
   width: ${props => props.width ? props.width : ''};
   margin: ${props => props.margin ? props.margin : ''};
 `

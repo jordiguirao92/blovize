@@ -1,7 +1,7 @@
 import { useSelector } from 'react-redux';
 
 import {Flex, ImageStyled, FlexStyled, H2, H4, P} from './UI';
-import profileImage from '../images/profile.png'
+import defaultImage from '../images/profile.png'
 import trophyImage from '../images/trophy.png'
 
 const ProfileCard = () => {
@@ -11,7 +11,7 @@ const ProfileCard = () => {
       
       <FlexStyled justify='space-evenly' margin='50px'>
         <Flex justify='center'>
-          <ImageStyled height='250px' margin='10px' src={profileImage}/>
+          <ImageStyled height='250px' width='250px' margin='10px' borderRadius='50%' src={user.profileImage ? user.profileImage : defaultImage}/>
         </Flex>
         
         <Flex direction='column' align='flex-start' justify='center'>
