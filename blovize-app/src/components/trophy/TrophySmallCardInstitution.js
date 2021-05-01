@@ -1,7 +1,6 @@
 import {AiFillHeart} from 'react-icons/ai'
 
-import {Flex, FlexStyled, ImageStyled, Button, P, LinkStyled} from '../UI';
-import trophyImage from '../../images/trophy.png';
+import {Flex, FlexStyled, ImageStyled, P, LinkStyled} from '../UI';
 
 
 const TrophySmallCardInstitution = (props) => {
@@ -18,7 +17,7 @@ const TrophySmallCardInstitution = (props) => {
             <P>{likes}</P>
             <AiFillHeart size={30} style={{fill:'red'}}/>
           </Flex>
-          <ImageStyled src={trophyImage} alt='trophy image'/>
+          <ImageStyled src={image} alt='trophy image'/>
           <P bold='bold'>{name}</P>
           <P>{team}</P>
           <P>{playerName}</P>

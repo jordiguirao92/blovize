@@ -1,4 +1,4 @@
-import {Flex, FlexStyled, ImageStyled, Button, P} from '../UI';
+import {Flex} from '../UI';
 import TrophySmallCard from './TrophySmallCard';
 import TrophySmallCardInstitution from './TrophySmallCardInstitution';
 

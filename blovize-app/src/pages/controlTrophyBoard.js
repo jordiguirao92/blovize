@@ -19,12 +19,6 @@ const ControlTrophyBoard = () => {
     const {id} = useParams();
     console.log(id);
     const [childrenTrophies, setChildrenTrophies] = useState([]);
-  /*const user = useSelector(state => state.user);
-  
-  const { trophyProps } = props;
-  const {image, name, team, price, id, date, playerName} = trophyProps;
-  const finalDate = new Date(date.seconds*1000);
-  const dateString = `${finalDate.getDate()}/${(finalDate.getMonth()) + 1}/${finalDate.getFullYear()}`; */
 
   useEffect(() => {
     getChildrenTrophy();

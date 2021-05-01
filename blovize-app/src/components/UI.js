@@ -86,6 +86,10 @@ export const Button = styled.button`
   color: ${props => props.color ? props.color : theme.colors.white};
   background-color: ${props => props.backColor ? props.backColor : theme.colors.primary};
   cursor: pointer;
+
+  &:hover {
+    background-color: ${props => props.backColor ? theme.hoverColors.secondary : theme.hoverColors.primary};
+  }
 `
 
 export const Input = styled.input`
@@ -128,6 +132,7 @@ export const P = styled.p`
   color: ${props => props.color ? props.color : theme.colors.black};
   margin: ${props => props.margin ? props.margin : '5px'};
   font-weight: ${props => props.bold ? props.bold : ''};
+  text-align: ${props => props.align ? props.align : ''};
 `
 
 export const FooterStyled = styled.footer`

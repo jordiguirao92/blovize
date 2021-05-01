@@ -15,6 +15,7 @@ import CreatedTrophies from './pages/createdTrophies';
 import TrophiesCreator from './pages/trophiesCreator';
 import ConfigurationProfile from './pages/configurationProfile';
 import ControlTrophyBoard from './pages/controlTrophyBoard';
+import DetailTrophy from './pages/detailTrophy';
 
 
 const Routes = () => (
@@ -41,7 +42,7 @@ const Routes = () => (
 
       {/*Institution & Players Routes*/}
       <Route exact path='/configuration-profile' component={ConfigurationProfile} />
-      {/*<Route exact path='/detail/:id' component={} />*/}
+      <Route exact path='/detail/:id' component={DetailTrophy} />
 
 
       <Route component={NotFoundPage}/>  

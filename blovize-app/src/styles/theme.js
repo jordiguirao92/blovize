@@ -5,6 +5,11 @@ const theme = {
       white: '#ffffff',
       grey: 'grey',
       black: 'black'
+    },
+    hoverColors: {
+      primary: '#1E90FF',
+      secondary: '#6495ED',
+
     }
   }
   

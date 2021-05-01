@@ -7,8 +7,12 @@ const TROPHIES_FATHER_COLLECTION = 'trophiesFather';
 let TROPHIES_CHILDREN_ID_COUNT = 10;
 export let TROPHIES_FATHER_ID_COUNT = 300;
 
-export async function getMarketplaceTrophies() {
+export async function getMarketplaceOnSaleTrophies() {
   const { success, data } = await listCollectionFiltered(TROPHIES_CHILDREN_COLLECTION, "onSale", "==", true);
+  return success ? data : null;
+}
+export async function getMarketplaceAccepOfferTrophies() {
+  const { success, data } = await listCollectionFiltered(TROPHIES_CHILDREN_COLLECTION, "acceptOffers", "==", true);
   return success ? data : null;
 }
 
