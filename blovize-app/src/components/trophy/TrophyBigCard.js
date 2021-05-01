@@ -1,12 +1,15 @@
+import {AiFillCloseCircle} from 'react-icons/ai';
 import {AiFillHeart} from 'react-icons/ai';
 import { FcRating } from 'react-icons/fc';
 import {useState, useEffect} from 'react';
 import { useSelector } from 'react-redux';
 
-import {Flex, FlexStyled, ImageStyled, Button, P, LinkStyled, Spacer} from '../UI';
+
+import {Flex, FlexStyled, Button, ImageStyled, H3, Spacer, P, ModalBg, ModalContent, CloseIconContainer, LinkStyled} from '../UI';
 import Star from './Star';
 import {updateUserProfile} from '../../controllers/user';
 import SaleOffersTrophyForm from '../form/SaleOffersTrophyForm';
+import BuyTrophyForm from '../form/BuyTrophyForm';
 
 
 const TrophyBigCard = ({trophy, isOwner}) => {
@@ -84,19 +87,23 @@ const TrophyBigCard = ({trophy, isOwner}) => {
             <Spacer/>
             {
             isOwner ? 
-            onSale ? <P>You sell it for {price}€</P> : acceptOffers && <P>You accept offers</P> 
+            onSale ? <P>On sale for {price}€</P> : acceptOffers && <P>You accept offers</P> 
             : 
-            onSale ?<P>{price}€</P> : acceptOffers && <P>Make an offer</P>
+            onSale ?<P>Buy for {price}€</P> : acceptOffers && <P>Make an offer</P>
           }
           </Flex>
         </FlexStyled>
 
-        {isOwner ? <SaleOffersTrophyForm trophy={trophy}/> : ''}
+        {isOwner ? 
+        <SaleOffersTrophyForm trophy={trophy}/> 
+          : 
+          onSale && !acceptOffers ? 
+          <BuyTrophyForm  trophy={trophy}/>
+          : 
+          !onSale && acceptOffers &&
+          <BuyTrophyForm  trophy={trophy}/>
+        }
         </>
-
-        
-
-
 
     )
 }

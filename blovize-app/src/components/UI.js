@@ -228,8 +228,35 @@ export const BurguerStyled = styled.button`
         transform: ${props => props.open ? 'rotate(-45deg)' : 'rotate(0)'};
       }
     }
-
 `
+
+export const ModalBg = styled.div`
+  position: absolute;
+  top: ${props => props.show ? 0 : '100%'};
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: black;
+  transition: opacity 0.5s;
+  opacity: ${props => props.show ? 0.7 : 0};
+`
+export const ModalContent = styled.div`
+  position: absolute;
+  top: ${props => props.show ? '50%' : '200%'};
+  left: 50%;
+  transform: translate(-50%, -50%);
+  max-width: 400px;
+  background-color: white;
+  padding: 20px;
+  transition: all 0.5s;
+`;
+export const CloseIconContainer = styled.div`
+  position: absolute;
+  top: 5px;
+  right: 5px;
+  cursor: pointer;
+`
+
 
 export const iconSize = 35;
 
