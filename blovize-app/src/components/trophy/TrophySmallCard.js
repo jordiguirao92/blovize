@@ -74,7 +74,7 @@ const TrophySmallCard = (props) => {
           <P bold='bold' color={props => props.theme.colors.primary}>{playerName}</P>
           {
             user.email === owner ? 
-            onSale ? <P>On sale for {price}€</P> : acceptOffers && <P>You accept offers</P> 
+            onSale ? <P>You sale it for {price}€</P> : acceptOffers && <P>You accept offers</P> 
             : 
             onSale ?<P> {price}€</P> : acceptOffers && <P>Make an offer</P>
           }

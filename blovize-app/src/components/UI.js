@@ -238,7 +238,7 @@ export const ModalBg = styled.div`
   height: 100%;
   background-color: black;
   transition: opacity 0.5s;
-  opacity: ${props => props.show ? 0.7 : 0};
+  opacity: ${props => props.show ? 0.9 : 0};
 `
 export const ModalContent = styled.div`
   position: absolute;
@@ -250,6 +250,7 @@ export const ModalContent = styled.div`
   padding: 20px;
   transition: all 0.5s;
 `;
+
 export const CloseIconContainer = styled.div`
   position: absolute;
   top: 5px;

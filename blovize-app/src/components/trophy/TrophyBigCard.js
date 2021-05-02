@@ -1,4 +1,3 @@
-import {AiFillCloseCircle} from 'react-icons/ai';
 import {AiFillHeart} from 'react-icons/ai';
 import { FcRating } from 'react-icons/fc';
 import {useState, useEffect} from 'react';

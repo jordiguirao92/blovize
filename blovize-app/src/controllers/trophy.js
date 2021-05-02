@@ -47,6 +47,15 @@ export async function updateTrophyDetails(trophyId, values) {
   return {success: true}
 }
 
+export async function updateBuyTrophy(user, trophy) {
+  const {id, owner, ownerList} = trophy;
+  const trophyData = {...trophy, acceptOffers: false, onSale: false, price:0, ownerList: [...ownerList, owner], owner: user.email};
+  console.log(trophyData);
+  console.log(id);
+  //await updateCollectionObject(TROPHIES_CHILDREN_COLLECTION, id.toString(), trophyData);
+  return {success: true}
+}
+
 //Pendiente
 export async function createTrophy(trophyData) { 
   //checker primero si existe el usuario;
