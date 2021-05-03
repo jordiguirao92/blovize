@@ -10,7 +10,7 @@ const SideBar = () => {
     const sidebar = useSelector(state => state.sidebar);
         
     return(
-        <FullDiv left={sidebar === true ? '0%' : '-100%'}>
+        <FullDiv left={sidebar ? '0%' : '-100%'}>
         {user.userRole === 'player' ? <SideBarPlayer /> : <SideBarInstitution />}
         </FullDiv>
     )

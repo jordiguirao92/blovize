@@ -39,16 +39,12 @@ export async function updateUserProfile(userId, values) {
 export async function updateBuyTrophyUsers(buyer, trophy) {
   //Update buyer user details
   const buyerData = {...buyer, trophyList:[...buyer.trophyList, trophy.id]}
-  console.log(buyerData);
-  console.log(buyer.id)
-  //await updateCollectionObject(USERS_COLLECTION, buyer.id, buyerData);
+  const updateBuyer = await updateCollectionObject(USERS_COLLECTION, buyer.id, buyerData);
 
   //Update saler user details
   const [saler] = await getUserProfileByEmail(trophy.owner);
-  console.log(saler);
   const newTrophyList = saler.trophyList.filter(trophyId => trophyId !== trophy.id);
   const salerObject = {...saler, trophyList: newTrophyList};
-  console.log(salerObject);
-  //const updateSaler = await updateUserProfile(saler.id, salerObject);
-  return {success: true}
+  const updateSaler = await updateUserProfile(saler.id, salerObject);
+  return true
 }

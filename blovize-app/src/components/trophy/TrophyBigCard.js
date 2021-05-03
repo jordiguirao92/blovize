@@ -9,6 +9,7 @@ import Star from './Star';
 import {updateUserProfile} from '../../controllers/user';
 import SaleOffersTrophyForm from '../form/SaleOffersTrophyForm';
 import BuyTrophyForm from '../form/BuyTrophyForm';
+import OfferTrophyForm from '../form/OfferTrophyForm';
 
 
 const TrophyBigCard = ({trophy, isOwner}) => {
@@ -100,7 +101,7 @@ const TrophyBigCard = ({trophy, isOwner}) => {
           <BuyTrophyForm  trophy={trophy}/>
           : 
           !onSale && acceptOffers &&
-          <BuyTrophyForm  trophy={trophy}/>
+          <OfferTrophyForm  trophy={trophy}/>
         }
         </>
 

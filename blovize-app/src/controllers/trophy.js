@@ -50,10 +50,8 @@ export async function updateTrophyDetails(trophyId, values) {
 export async function updateBuyTrophy(user, trophy) {
   const {id, owner, ownerList} = trophy;
   const trophyData = {...trophy, acceptOffers: false, onSale: false, price:0, ownerList: [...ownerList, owner], owner: user.email};
-  console.log(trophyData);
-  console.log(id);
-  //await updateCollectionObject(TROPHIES_CHILDREN_COLLECTION, id.toString(), trophyData);
-  return {success: true}
+  await updateCollectionObject(TROPHIES_CHILDREN_COLLECTION, id.toString(), trophyData);
+  return true
 }
 
 //Pendiente

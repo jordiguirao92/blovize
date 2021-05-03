@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 import { useSelector } from 'react-redux';
+import {useHistory} from 'react-router-dom';
 
 import {FlexStyled, Button, P} from '../UI';
 import {getTrophiesById} from '../../controllers/trophy';
@@ -8,6 +9,7 @@ import  {acceptOfferReceived, declineOfferReceived} from '../../controllers/offe
 
 
 const OfferCardReceived = ({offerProps}) => {
+  const history = useHistory();
   const [trophies, setTrophies] = useState([]);
   console.log(offerProps);
   const user = useSelector(state => state.user);
@@ -21,7 +23,6 @@ const OfferCardReceived = ({offerProps}) => {
       try{
           const [result] = await getTrophiesById(offerProps.trophy);
           setTrophies(result);
-          console.log(result);
       } catch (error) {
         return error;
       }
@@ -30,6 +31,9 @@ const OfferCardReceived = ({offerProps}) => {
     const acceptOffer = async () => {
       try{
           const result = await acceptOfferReceived(offerProps, trophies, user);
+          if(result.success){
+            window.location.reload();
+          }
       } catch (error) {
         return error;
       }
@@ -38,6 +42,9 @@ const OfferCardReceived = ({offerProps}) => {
     const declineOffer = async () => {
       try{
         const result = await declineOfferReceived(offerProps);
+        if(result.success){
+          window.location.reload();
+        }
       } catch (error) {
         return error;
       }          

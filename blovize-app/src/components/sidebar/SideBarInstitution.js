@@ -11,7 +11,7 @@ const SideBarInstitution = () => {
     const sidebar = useSelector(state => state.sidebar);
 
     return(
-        <NavStyled left={sidebar === true ? '0%' : '-100%'} width='25%' padding='50px 30px' direction='column' justify='flex-start'  backColor={props => props.theme.colors.grey}>
+        <NavStyled left={sidebar ? '0%' : '-100%'} width='25%' padding='50px 30px' direction='column' justify='flex-start'  backColor={props => props.theme.colors.grey}>
             {SidebarDataInstitution.map((item, index) => {
                 return (
                     <>

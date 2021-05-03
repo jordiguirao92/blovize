@@ -17,8 +17,12 @@ const BuyTrophyForm = ({trophy}) => {
 
     const buyTrophy = async () => {
         const result = await updateBuyTrophyUsers(user, trophy);
-        const {success} = await updateBuyTrophy(user, trophy);
-        return {success, result}
+        const success = await updateBuyTrophy(user, trophy);
+        if(result && success) {
+            history.push('/my-trophies')
+        } else {
+            return false
+        }
     }
     
   

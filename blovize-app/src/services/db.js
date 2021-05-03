@@ -12,6 +12,7 @@ function getDb() {
 export async function createObjectWithId(collection, object, id) {
   try {
     const db = getDb();
+    console.log(collection, id, object)
     await db.collection(collection).doc(id).set(object);
     return { success: true };
   } catch (error) {

@@ -1,10 +1,9 @@
 import { singup } from '../services/auth';
-import { createObjectWithId, getObjectById, listCollectionFiltered, updateCollectionObject} from '../services/db';
+import { createObjectWithId, getObjectById, listCollectionFiltered, updateCollectionObject, listCollection} from '../services/db';
 import  {updateUserProfile, getUserProfile, getUserProfileByEmail} from './user';
 import {updateTrophyDetails} from './trophy';
 
 const OFFERS_COLLECTION = 'offers';
-const OFFERS_ID_COUNT = 5;
 
 
 export async function getOffersReceived(userEmail) {
@@ -20,7 +19,7 @@ export async function getOffersSend(userEmail) {
 export async function acceptOfferReceived(offerProps, trophies, user) {
   //Update Offer
   const newDate = new Date().getTime();
-  const offerObject = {...offerProps, date: newDate, offerPrice: offerProps.offerPrice, status: 'closed'};
+  const offerObject = {...offerProps, date: newDate, salePrice: offerProps.offerPrice, status: 'closed'};
   const updateOffer = await updateCollectionObject(OFFERS_COLLECTION, offerProps.id.toString(), offerObject);
 
   //Update Trophy
@@ -48,6 +47,26 @@ export async function declineOfferReceived(offerProps) {
   console.log( offerProps.id.toString())
   const updateOffer = await updateCollectionObject(OFFERS_COLLECTION, offerProps.id.toString(), offerObject);
   return {success: true}
+}
+
+
+export async function createOffer(user, trophy, priceOffer) {
+  const newDate = new Date().getTime();
+  const {price} = priceOffer;
+  const {owner, id, offerHistory} = trophy;
+  const {data} = await listCollection(OFFERS_COLLECTION);
+  const newId = data.length + 1;
+  const offerObject = {buyer: user.email, date:newDate, id: newId, offerPrice: price, salePrice: 0, saler: owner , status: 'pending', trophy: id};
+
+  const createOffer = await createObjectWithId(OFFERS_COLLECTION, offerObject, newId.toString());
+  const updateTrophy = await updateTrophyDetails(id.toString() ,{offerHistory: [...offerHistory, newId]});
+
+  if(createOffer.success && updateTrophy.success) {
+    return {success: true}
+  } else {
+    return {success: false}
+  }
+  
 }
 
 

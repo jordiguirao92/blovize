@@ -6,6 +6,7 @@ import { useSelector } from 'react-redux';
 import {Flex, FlexStyled, ImageStyled, Button, P, LinkStyled, Spacer} from '../UI';
 import Star from './Star';
 import {updateUserProfile} from '../../controllers/user';
+import {updateTrophyDetails, getTrophiesById} from '../../controllers/trophy';
 
 
 const TrophySmallCard = (props) => {
@@ -13,7 +14,7 @@ const TrophySmallCard = (props) => {
   const [likedTrophies, setLikedTrophies] = useState(user.trophyLiked);
   const [favouriteTrophies, setFavouriteTrophies] = useState(user.trophyFavourites);
   const { trophyProps } = props;
-  const {image, name, team, price, id, date, playerName, onSale, acceptOffers, owner} = trophyProps;
+  const {image, name, team, price, id, date, playerName, onSale, acceptOffers, owner, likes} = trophyProps;
 
   const finalDate = new Date(date.seconds*1000);
   const dateString = `${finalDate.getDate()}/${(finalDate.getMonth()) + 1}/${finalDate.getFullYear()}`;
@@ -22,16 +23,20 @@ const TrophySmallCard = (props) => {
   const likeOnClick = async () => {
     try {
       if (likedTrophies.includes(id)) {
-        const result = likedTrophies.filter(trophyId => trophyId !== id);
-        console.log(result);
-        setLikedTrophies(result);
-        console.log(likedTrophies);
-        //await updateUserProfile(user.id, result);
+        const likeOut = likedTrophies.filter(trophyId => trophyId !== id);
+        setLikedTrophies(likeOut);
+       // await updateUserProfile(user.id, {trophyLiked: likeOut});
+        const [data] = await getTrophiesById(id);
+        const {likes} = data;
+        await updateTrophyDetails(id.toString(), {likes: likes - 1 });
   
-      } else { 
-        setLikedTrophies(likedTrophies.push(id));
-        console.log(likedTrophies);
-        //await updateUserProfile(user.id, result);
+      } else {
+        const likeIn = [...likedTrophies, id];
+        setLikedTrophies(likeIn);
+        await updateUserProfile(user.id, {trophyLiked: likeIn});
+        const [data] = await getTrophiesById(id);
+        const {likes} = data;
+        await updateTrophyDetails(id.toString(), {likes: likes + 1 });
       }
     } catch (error) {
       return error;
@@ -42,16 +47,14 @@ const TrophySmallCard = (props) => {
   const favouriteOnClick = async () => {
     try {
       if (favouriteTrophies.includes(id)) {
-        const result = favouriteTrophies.filter(trophyId => trophyId !== id);
-        console.log(result);
-        setFavouriteTrophies(result);
-        console.log(favouriteTrophies);
-        //await updateUserProfile(user.id, result);
+        const favouriteOut = favouriteTrophies.filter(trophyId => trophyId !== id);
+        setFavouriteTrophies(favouriteOut);
+        await updateUserProfile(user.id, {trophyFavourites: favouriteOut});
   
       } else { 
-        setFavouriteTrophies(favouriteTrophies.push(id));
-        console.log(favouriteTrophies);
-        //await updateUserProfile(user.id, result);
+        const favouriteIn = [...favouriteTrophies, id];
+        setFavouriteTrophies(favouriteIn);
+        await updateUserProfile(user.id, {trophyFavourites: favouriteIn});
       }
     } catch (error) {
       return error;
