@@ -1,5 +1,6 @@
 import { singup } from '../services/auth';
 import { createObjectWithId, getObjectById, listCollectionFiltered, updateCollectionObject } from '../services/db';
+import {updateUserProfile} from '../controllers/user';
 
 const USERS_COLLECTION = 'profiles';
 const TROPHIES_CHILDREN_COLLECTION = 'trophiesChildren';
@@ -53,6 +54,21 @@ export async function updateBuyTrophy(user, trophy) {
   await updateCollectionObject(TROPHIES_CHILDREN_COLLECTION, id.toString(), trophyData);
   return true
 }
+
+export async function likeTrophy(userId, trophyId, trophyLikes, action) {
+  await updateUserProfile(userId, trophyLikes);
+  const [data] = await getTrophiesById(trophyId);
+  const {likes} = data;
+
+  if(action === 'addLike'){
+    await updateTrophyDetails(trophyId.toString(), {likes: likes + 1 });
+
+  } else if (action === 'removeLike') {
+    await updateTrophyDetails(trophyId.toString(), {likes: likes - 1 });
+  }
+  return {success: true}
+}
+
 
 //Pendiente
 export async function createTrophy(trophyData) { 

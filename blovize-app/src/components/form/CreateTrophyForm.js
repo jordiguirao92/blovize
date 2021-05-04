@@ -6,6 +6,8 @@ import firebase from 'firebase';
 import {Flex, FlexStyled, Button, Input, H3, Spacer, LinkStyled, A, Select, ImageStyled, InputImage} from '../UI';
 import {SportBranchData} from './SportBranchData';
 import {createTrophy} from '../../controllers/trophy';
+import {getUserProfileByEmail} from '../../controllers/user';
+import {CreateTrophyPlayerCard} from './CreateTrophyPlayerCard';
 
 const CreateTrophyForm = () => {
 
@@ -14,7 +16,8 @@ const CreateTrophyForm = () => {
     const [error, setError] = useState('');
     const [file, setFile] = useState('');
     const [uploadValue, setUploadValue] = useState(-1);
-    const [addPlayers, setAddPlayers] = useState(0);
+    const [playerData, setPlayerData] = useState({playerName:'', playerBlovizeEmail: '', numberTrophies: ''});
+    const [playersList, setPlayersList] = useState([]);
     const [formData, setFormData] = useState({
         name:'', 
         team:'', 
@@ -26,6 +29,34 @@ const CreateTrophyForm = () => {
         institution: user.name,
         creator: user.email
     });
+
+    const addPlayer = async () => {
+        if(playerData.playerName && playerData.numberTrophies) {
+            if(playerData.playerBlovizeEmail) {
+                console.log('Email de blovize')
+                const result = await getUserProfileByEmail(playerData.playerBlovizeEmail);
+                console.log(result)
+                if(result) {
+                    const playerObject = playerData;
+                    console.log(playerObject)
+                    setPlayersList([playerObject]);
+                } else {
+                    setFile('Please this email is not a Blovize email user');
+                    console.log('Please this email is not a Blovize email user');
+                }
+            } else if(!playerData.playerBlovizeEmail) {
+                console.log('Ok, No email of Blovie user');
+                const playerObject = playerData;
+                console.log(playerObject)
+                setPlayersList([playerObject]);
+            }
+
+        } else {
+            setFile('Please fill Player Name and Number of trophies');
+            console.log('Please fill Player Name and Number of trophies');
+        }
+
+    }
     
     const handleFormSubmit = async (event) => {
         event.preventDefault();
@@ -38,7 +69,8 @@ const CreateTrophyForm = () => {
 
     const handleUpload = async (event) => {
         const file = event.target.files[0]; 
-        const storageRef = firebase.storage().ref(`/images//trophies/${formData.name}`);
+        if(!file) return
+        const storageRef = firebase.storage().ref(`/images/trophies/${formData.name}`);
         const task = storageRef.put(file);
 
         task.on('state_changed', snapshot => {
@@ -68,7 +100,7 @@ const CreateTrophyForm = () => {
 
     return(
         <Flex justify='center'>
-            <FlexStyled direction='column' justify='center' width='90%'>
+            <FlexStyled direction='column' justify='center' margin='0px 20px' >
                 <H3 margin='50px auto'>Trophies Creator Form</H3>
                 <form onSubmit={handleFormSubmit}>
                     <Flex justify='flex-start' align='flex-start' >
@@ -176,8 +208,8 @@ const CreateTrophyForm = () => {
                                 name='playerName' 
                                 type='text' 
                                 placeholder='Introduce the name of the player' 
-                                value={formData.playerName} 
-                                onChange={(event) => setFormData({ ...formData, playerName: event.target.value })}
+                                value={playerData.playerName} 
+                                onChange={(event) => setPlayerData({ ...playerData, playerName: event.target.value })}
                                 />
                         </Flex>
                         <Flex direction='column' align='flex-start' margin='0px 10px'>
@@ -187,27 +219,33 @@ const CreateTrophyForm = () => {
                                 name='playerEmail' 
                                 type='text' 
                                 placeholder='Introduce the player user Blovize email (if exist)' 
-                                value={formData.namePlayer} 
-                                onChange={(event) => setFormData({ ...formData, playerEmail: event.target.value })}
+                                value={playerData.playerBlovizeEmail} 
+                                onChange={(event) => setPlayerData({ ...playerData, playerBlovizeEmail: event.target.value })}
                                 />
                         </Flex>
                         <Flex direction='column' align='flex-start'>
                             <label htmlFor='numerTrophies'>Number of trophies</label>
                             <Input width='260px' height='30px' 
-                                id='numerTrophies' 
-                                name='numerTrophies' 
+                                id='numberTrophies' 
+                                name='numberTrophies' 
                                 type='text' 
                                 placeholder='Introduce the number of trophies to create' 
-                                value={formData.numerTrophies} 
-                                onChange={(event) => setFormData({ ...formData, numerTrophies: event.target.value })}
+                                value={playerData.numberTrophies} 
+                                onChange={(event) => setPlayerData({ ...playerData, numberTrophies: event.target.value })}
                                 />
                         </Flex>
                         <Flex align='flex-end' margin='0px 10px'>
-                            <Button width='100px' height='30px' onClick={() => setAddPlayers(addPlayers + 1) }>Add player</Button>  
+                            <Button width='100px' height='30px' onClick={() => addPlayer() }>Add player</Button>  
                         </Flex>
                     </Flex>
-                    {/*INTRODUCIR BUCLE FOR PARA PLAYERSFORM */}
-                                     
+                    {/*MAP PLAYERS */
+                        playersList && playersList.map((player) => {
+                            return(
+                                console.log('Hola')
+                            )
+                        })
+                    
+                    }                             
                     <Spacer />
                     <Flex direction='column' align='center'>
                         {error && <p>&nbsp;{error}</p>}

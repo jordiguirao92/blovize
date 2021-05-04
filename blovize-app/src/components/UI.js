@@ -140,9 +140,14 @@ export const FooterStyled = styled.footer`
   flex-direction: ${props => props.direction ? props.direction : 'row'};
   justify-content: ${props => props.justify ? props.justify : 'space-around'};
   background-color: ${props => props.backColor ? props.backColor : theme.colors.black};
+  position: fixed;
+  bottom: 0;
+  left:0;
+  right: 0;
 `
 
 export const HeaderStyled = styled.header`
+  padding: 20px;
   display: flex;
   flex-direction: ${props => props.direction ? props.direction : 'row'};
   justify-content: ${props => props.justify ? props.justify : 'space-around'};

@@ -13,15 +13,10 @@ const TrophySmallCardInstitution = (props) => {
       
       <LinkStyled to={`/detail/${id}`}>
         <FlexStyled justify='center' direction='column' width='320px' height='350px' padding='0px 10px' margin='10px'>
-          <Flex justify='flex-end'>
-            <P>{likes}</P>
-            <AiFillHeart size={30} style={{fill:'red'}}/>
-          </Flex>
           <ImageStyled src={image} alt='trophy image'/>
-          <P bold='bold'>{name}</P>
-          <P>{team}</P>
+          <P align="center" bold='bold' color={props => props.theme.colors.primary}>{name}</P>
+          <P color={props => props.theme.colors.primary}>{team}</P>
           <P>{playerName}</P>
-          
           <Flex>
             <P>#{id}</P>
             <P>{dateString}</P>

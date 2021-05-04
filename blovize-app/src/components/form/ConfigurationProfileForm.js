@@ -32,8 +32,9 @@ const ConfigurationProfileForm = ({role}) => {
       }
 
     const handleUpload = async (event) => {
-        const file = event.target.files[0]; 
-        const storageRef = firebase.storage().ref(`/images//profiles/${user.email}`);
+        const file = event.target.files[0];
+        if(!file) return 
+        const storageRef = firebase.storage().ref(`/images/profiles/${user.email}`);
         const task = storageRef.put(file);
 
         task.on('state_changed', snapshot => {
