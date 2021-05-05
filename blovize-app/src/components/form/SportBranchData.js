@@ -1,5 +1,9 @@
 export const SportBranchData = [
     {
+      name: 'Select a sport branch',
+      value: 'No sport branch selected',
+    },
+    {
       name: 'Football',
       value: 'football',
     },

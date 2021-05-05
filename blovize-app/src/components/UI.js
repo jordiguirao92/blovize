@@ -31,7 +31,7 @@ export const FlexStyled = styled.div`
   align-items: ${props => props.align ? props.align : 'center'};
   margin: ${props => props.margin ? props.margin : 'auto'};
   padding: ${props => props.padding ? props.padding : 'auto'};
-  border: 5px solid ${props => props.colorBorder ? props.colorBorder : theme.colors.primary};
+  border: ${props => props.borderSize ? props.borderSize : '5px'} solid ${props => props.colorBorder ? props.colorBorder : theme.colors.primary};
   border-radius: ${props => props.borderRadius ? props.borderRadius : '10px'};
   color: ${props => props.color ? props.color : theme.colors.black};
   background-color: ${props => props.backColor ? props.backColor : theme.colors.white};
@@ -140,10 +140,13 @@ export const FooterStyled = styled.footer`
   flex-direction: ${props => props.direction ? props.direction : 'row'};
   justify-content: ${props => props.justify ? props.justify : 'space-around'};
   background-color: ${props => props.backColor ? props.backColor : theme.colors.black};
+  /*
   position: fixed;
   bottom: 0;
   left:0;
   right: 0;
+  margin-top: auto;
+  */
 `
 
 export const HeaderStyled = styled.header`

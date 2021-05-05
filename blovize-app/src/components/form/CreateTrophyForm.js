@@ -3,11 +3,11 @@ import {useHistory} from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import firebase from 'firebase';
 
-import {Flex, FlexStyled, Button, Input, H3, Spacer, LinkStyled, A, Select, ImageStyled, InputImage} from '../UI';
+import {Flex, FlexStyled, Button, Input, H3, Spacer, LinkStyled, A, Select, ImageStyled, InputImage, P} from '../UI';
 import {SportBranchData} from './SportBranchData';
 import {createTrophy} from '../../controllers/trophy';
 import {getUserProfileByEmail} from '../../controllers/user';
-import {CreateTrophyPlayerCard} from './CreateTrophyPlayerCard';
+import CreateTrophyPlayerCard from './CreateTrophyPlayerCard';
 
 const CreateTrophyForm = () => {
 
@@ -33,37 +33,36 @@ const CreateTrophyForm = () => {
     const addPlayer = async () => {
         if(playerData.playerName && playerData.numberTrophies) {
             if(playerData.playerBlovizeEmail) {
-                console.log('Email de blovize')
+                setError('');
                 const result = await getUserProfileByEmail(playerData.playerBlovizeEmail);
-                console.log(result)
-                if(result) {
+                if(result.length > 0 && result[0].email === playerData.playerBlovizeEmail) {
                     const playerObject = playerData;
-                    console.log(playerObject)
-                    setPlayersList([playerObject]);
+                    setPlayersList([...playersList, playerObject]);
                 } else {
-                    setFile('Please this email is not a Blovize email user');
-                    console.log('Please this email is not a Blovize email user');
+                    setError('Please this email is not a Blovize email user');
                 }
             } else if(!playerData.playerBlovizeEmail) {
-                console.log('Ok, No email of Blovie user');
+                setError('');
                 const playerObject = playerData;
-                console.log(playerObject)
-                setPlayersList([playerObject]);
+                setPlayersList([...playersList, playerObject]);
             }
 
         } else {
-            setFile('Please fill Player Name and Number of trophies');
-            console.log('Please fill Player Name and Number of trophies');
+            setError('Please fill Player Name and Number of trophies');
         }
+    }
 
+    const removePlayer = async (name) => {
+        const newPlayerList = playersList.filter(player => player.playerName !== name);
+        setPlayersList(newPlayerList);
     }
     
     const handleFormSubmit = async (event) => {
         event.preventDefault();
-        //const result = await createTrophy(formData);
+        const result = await createTrophy(formData, playersList);
         /*console.log('IMTCHLG ~ file: signup.js ~ line 14 ~ handleFormSubmit ~ result', result);
         if (result) {
-          history.push('/main');
+          history.push('/created-trophies);
         }*/
       }
 
@@ -99,7 +98,7 @@ const CreateTrophyForm = () => {
     }
 
     return(
-        <Flex justify='center'>
+        <Flex justify='center' margin='20px 0px'>
             <FlexStyled direction='column' justify='center' margin='0px 20px' >
                 <H3 margin='50px auto'>Trophies Creator Form</H3>
                 <form onSubmit={handleFormSubmit}>
@@ -231,7 +230,7 @@ const CreateTrophyForm = () => {
                                 type='text' 
                                 placeholder='Introduce the number of trophies to create' 
                                 value={playerData.numberTrophies} 
-                                onChange={(event) => setPlayerData({ ...playerData, numberTrophies: event.target.value })}
+                                onChange={(event) => setPlayerData({ ...playerData, numberTrophies: Number(event.target.value) })}
                                 />
                         </Flex>
                         <Flex align='flex-end' margin='0px 10px'>
@@ -239,16 +238,20 @@ const CreateTrophyForm = () => {
                         </Flex>
                     </Flex>
                     {/*MAP PLAYERS */
-                        playersList && playersList.map((player) => {
+                        playersList && playersList.map((player, index) => {
                             return(
-                                console.log('Hola')
+                                <CreateTrophyPlayerCard 
+                                    key={index}
+                                    playerData={player}
+                                    remove={removePlayer}
+                                />
                             )
                         })
                     
                     }                             
                     <Spacer />
                     <Flex direction='column' align='center'>
-                        {error && <p>&nbsp;{error}</p>}
+                        {error && <P color='red'>&nbsp;{error}</P>}
                         <Button width='300px' height='30px'>Create trophies</Button>
                     </Flex>
                     <Spacer />
@@ -260,54 +263,3 @@ const CreateTrophyForm = () => {
 }
 
 export default CreateTrophyForm;
-
-/*                  <>
-                    {for(let i = 0; i <= addPlayers; i+=1){
-                        <PlayersForm id={i}/>
-                    }}
-                    </> */
-
-/*const PlayersForm = ({id}) => {
-
-    return (
-        <Flex  align='flex-end' margin='10px'>
-                        <Flex direction='column' align='flex-start' >
-                            <label htmlFor={`playerName${id}`}>Player {id} name</label>
-                            <Input width='300px' height='30px' 
-                                id={`playerName${id}`} 
-                                name={`playerName${id}`} 
-                                type='text' 
-                                placeholder='Introduce the name of the player' 
-                                value={formData.playerName} 
-                                onChange={(event) => setFormData({ ...formData, playerName: event.target.value })}
-                                />
-                        </Flex>
-                        <Flex direction='column' align='flex-start' margin='0px 10px'>
-                            <label htmlFor={`playerEmail${id}`}>Player {id} Blovize email</label>
-                            <Input width='300px' height='30px' 
-                                id={`playerEmail${id}`} 
-                                name={`playerEmail${id}`} 
-                                type='text' 
-                                placeholder='Introduce the player user Blovize email (if exist)' 
-                                value={formData.namePlayer} 
-                                onChange={(event) => setFormData({ ...formData, playerEmail: event.target.value })}
-                                />
-                        </Flex>
-                        <Flex direction='column' align='flex-start'>
-                            <label htmlFor={`numberTrophies${id}`}>Number of trophies</label>
-                            <Input width='260px' height='30px' 
-                                id={`numberTrophies${id}`} 
-                                name={`numberTrophies${id}`} 
-                                type='text' 
-                                placeholder='Introduce the number of trophies to create' 
-                                value={formData.numerTrophies} 
-                                onChange={(event) => setFormData({ ...formData, numerTrophies: event.target.value })}
-                                />
-                        </Flex>
-                        <Flex align='flex-end' margin='0px 10px'>
-                            <Button width='100px' height='30px'>Add player</Button>  
-                        </Flex>
-                    </Flex>
-    )
-    
-}*/
