@@ -17,7 +17,8 @@ const TrophySmallCard = (props) => {
   const [favouriteTrophies, setFavouriteTrophies] = useState(user.trophyFavourites);
   const [numLikes, setNumlikes] = useState(likes);
  
-  const finalDate = new Date(date.seconds*1000);
+  //const finalDate = new Date(date.seconds*1000);
+  const finalDate = new Date(date);
   const dateString = `${finalDate.getDate()}/${(finalDate.getMonth()) + 1}/${finalDate.getFullYear()}`;
 
   

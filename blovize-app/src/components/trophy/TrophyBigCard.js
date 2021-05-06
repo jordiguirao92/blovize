@@ -17,7 +17,8 @@ const TrophyBigCard = ({trophy, isOwner}) => {
   const {image, name, team, price, id, date, playerName, onSale, acceptOffers, owner, description} = trophy;
   const [likedTrophies, setLikedTrophies] = useState(user.trophyLiked);
   const [favouriteTrophies, setFavouriteTrophies] = useState(user.trophyFavourites);
-  const finalDate = new Date(date.seconds*1000);
+  //const finalDate = new Date(date.seconds*1000);
+  const finalDate = new Date(date);
   const dateString = `${finalDate.getDate()}/${(finalDate.getMonth()) + 1}/${finalDate.getFullYear()}`;
 
   const likeOnClick = async () => {

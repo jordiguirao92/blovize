@@ -59,11 +59,11 @@ const CreateTrophyForm = () => {
     
     const handleFormSubmit = async (event) => {
         event.preventDefault();
+        //Introducir chequeo de datos del formulario para seguir, sino mostrar error.
         const result = await createTrophy(formData, playersList);
-        /*console.log('IMTCHLG ~ file: signup.js ~ line 14 ~ handleFormSubmit ~ result', result);
-        if (result) {
-          history.push('/created-trophies);
-        }*/
+        if (result.success) {
+          history.push('/created-trophies');
+        }
       }
 
     const handleUpload = async (event) => {
@@ -101,7 +101,7 @@ const CreateTrophyForm = () => {
         <Flex justify='center' margin='20px 0px'>
             <FlexStyled direction='column' justify='center' margin='0px 20px' >
                 <H3 margin='50px auto'>Trophies Creator Form</H3>
-                <form onSubmit={handleFormSubmit}>
+                <form onSubmit={handleFormSubmit} >
                     <Flex justify='flex-start' align='flex-start' >
                         <Flex direction='column' align='flex-start' width='auto' margin='0px 10px'>
                             <Flex direction='column' align='flex-start' width='auto'>
@@ -234,7 +234,7 @@ const CreateTrophyForm = () => {
                                 />
                         </Flex>
                         <Flex align='flex-end' margin='0px 10px'>
-                            <Button width='100px' height='30px' onClick={() => addPlayer() }>Add player</Button>  
+                            <Button type='button' width='100px' height='30px' onClick={() => addPlayer() }>Add player</Button>  
                         </Flex>
                     </Flex>
                     {/*MAP PLAYERS */
@@ -252,7 +252,7 @@ const CreateTrophyForm = () => {
                     <Spacer />
                     <Flex direction='column' align='center'>
                         {error && <P color='red'>&nbsp;{error}</P>}
-                        <Button width='300px' height='30px'>Create trophies</Button>
+                        <Button  type='submit' width='300px' height='30px'>Create trophies</Button>
                     </Flex>
                     <Spacer />
                 </form>

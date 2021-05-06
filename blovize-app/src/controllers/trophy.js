@@ -68,7 +68,7 @@ export async function likeTrophy(userId, trophyId, trophyLikes, action) {
 }
 
 
-//Pendiente
+
 export async function createTrophy(formData, playersList) { 
   //Create father ID:
   const fatherCollection = await listCollection(TROPHIES_FATHER_COLLECTION);
@@ -90,25 +90,26 @@ export async function createTrophy(formData, playersList) {
     likes:0, 
     id: fatherID
   };
-  console.log(fatherData);
-  console.log(playersList.length);
-  console.log(playersList[0].numberTrophies)
+  await createObjectWithId(TROPHIES_FATHER_COLLECTION, fatherData, fatherID.toString());
 
   
-  /*for (let i=0; i < playersList.length; i+=1){
+  for (let i=0; i < playersList.length; i+=1){
     for (let j=0; j < playersList[i].numberTrophies; j+=1) {
       const childrenCollection = await listCollection(TROPHIES_CHILDREN_COLLECTION);
       const childrenID = childrenCollection.data.length + 1;
+      console.log(childrenID);
       const childrenData = {
         acceptOffer: false, 
         branch, 
         claimCode: playersList[i].playerBlovizeEmail ? '' : createClaimCode(), 
-        claimDate: playersList[i].playerBlovizeEmail ? new Date().getTime() : '', 
+        claimDate: playersList[i].playerBlovizeEmail ? new Date().getTime() : '',
+        claimEmail:  playersList[i].playerBlovizeEmail ?  playersList[i].playerBlovizeEmail : '',
         classification, 
-        date, 
+        date: newData, 
         fatherId: fatherID, 
         id: childrenID,
         image,
+        description,
         institution,
         isClaimed: playersList[i].playerBlovizeEmail ? true : false,
         likes: 0,
@@ -121,12 +122,10 @@ export async function createTrophy(formData, playersList) {
         price: 0,
         team 
       }
-        console.log(childrenData);
+        await createObjectWithId(TROPHIES_CHILDREN_COLLECTION, childrenData, childrenID.toString());
     }
-  }*/
-  //const { success, data } = await createObjectWithId(TROPHIES_CHILDREN_COLLECTION, objectData, id);
-  //const { success, data } = await createObjectWithId(TROPHIES_FATHER_COLLECTION, objectData, id);
-  //return success ? data : null;
+  }
+  return {success : true};
 }
 
 
