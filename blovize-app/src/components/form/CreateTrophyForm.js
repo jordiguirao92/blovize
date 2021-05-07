@@ -16,7 +16,7 @@ const CreateTrophyForm = () => {
     const [error, setError] = useState('');
     const [file, setFile] = useState('');
     const [uploadValue, setUploadValue] = useState(-1);
-    const [playerData, setPlayerData] = useState({playerName:'', playerBlovizeEmail: '', numberTrophies: ''});
+    const [playerData, setPlayerData] = useState({playerName:'', playerEmail: '', numberTrophies: ''});
     const [playersList, setPlayersList] = useState([]);
     const [formData, setFormData] = useState({
         name:'', 
@@ -31,24 +31,20 @@ const CreateTrophyForm = () => {
     });
 
     const addPlayer = async () => {
-        if(playerData.playerName && playerData.numberTrophies) {
-            if(playerData.playerBlovizeEmail) {
-                setError('');
-                const result = await getUserProfileByEmail(playerData.playerBlovizeEmail);
-                if(result.length > 0 && result[0].email === playerData.playerBlovizeEmail) {
-                    const playerObject = playerData;
-                    setPlayersList([...playersList, playerObject]);
-                } else {
-                    setError('Please this email is not a Blovize email user');
-                }
-            } else if(!playerData.playerBlovizeEmail) {
-                setError('');
-                const playerObject = playerData;
+        if(playerData.playerName && playerData.numberTrophies && playerData.playerEmail) {
+            setError('');
+            const result = await getUserProfileByEmail(playerData.playerEmail);
+            if(result.length > 0 && result[0].email === playerData.playerEmail) {
+                const playerObject = {...playerData, isBlovizeUser: true};
+                console.log(playerObject)
+                setPlayersList([...playersList, playerObject]);
+            } else {
+                const playerObject = {...playerData, isBlovizeUser: false};
+                console.log(playerObject)
                 setPlayersList([...playersList, playerObject]);
             }
-
         } else {
-            setError('Please fill Player Name and Number of trophies');
+            setError('Please fill all fields in order to add a player');
         }
     }
 
@@ -112,7 +108,7 @@ const CreateTrophyForm = () => {
                                     type='text' 
                                     placeholder='Introduce the name of the trophy' 
                                     value={formData.name} 
-                                    onChange={(event) => setFormData({ ...formData, name: event.target.value })}
+                                    onChange={(event) => setFormData({ ...formData, name: event.target.value.toUpperCase()})}
                                     />
                             </Flex>
                             <Spacer />
@@ -218,8 +214,8 @@ const CreateTrophyForm = () => {
                                 name='playerEmail' 
                                 type='text' 
                                 placeholder='Introduce the player user Blovize email (if exist)' 
-                                value={playerData.playerBlovizeEmail} 
-                                onChange={(event) => setPlayerData({ ...playerData, playerBlovizeEmail: event.target.value })}
+                                value={playerData.playerEmail} 
+                                onChange={(event) => setPlayerData({ ...playerData, playerEmail: event.target.value })}
                                 />
                         </Flex>
                         <Flex direction='column' align='flex-start'>

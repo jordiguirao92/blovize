@@ -7,3 +7,5 @@ export const firebaseConfig = {
     appId: "1:182691507739:web:bfd379512bd1671480d2be",
     measurementId: "G-LDWTFNB77P"
   };
+
+  export const firebaseBlovizeLink = '';

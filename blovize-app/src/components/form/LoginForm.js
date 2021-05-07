@@ -6,7 +6,6 @@ import { login } from '../../services/auth';
 
 
 const LoginForm = () => {
-
     const history = useHistory();
     const [formData, setFormData] = useState({ email: '', password: '' });
     const [error, setError] = useState('');

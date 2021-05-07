@@ -5,6 +5,7 @@ import {useHistory} from 'react-router-dom';
 import {registerAuthObserver} from '../services/auth';
 import { setUser, clearUser } from '../redux/user/userActions';
 import { getUserProfile } from '../controllers/user';
+import {useQuery} from '../hooks/useQuery';
 
 import MainLayout from '../components/layout/MainLayout';
 import ProfileCard from '../components/ProfileCard';
@@ -16,34 +17,13 @@ import TrophyClaim from '../components/trophy/TrophyClaim';
 
 
 const ClaimTrophy= () => {
-    /*const dispatch = useDispatch();
-    const history = useHistory();
-    const [isLoading, setIsLoading] = useState(true);
-
-    useEffect(() => {
-        registerAuthObserver(async (user) => {
-          if (user) {
-            console.log('IMTCHLG ~ El usuario ha hecho login: ', user);
-            const userProfile = await getUserProfile(user.uid);
-            dispatch(setUser(userProfile));
-          } else {
-            console.log('IMTCHLG ~ El usuario ha hecho logout: ');
-            dispatch(clearUser());
-            history.push('/');
-            
-          }
-          setIsLoading(false)
-        })
-      }, []);
-
-    if (isLoading) return <Loading />;*/
-
-
+    const query = useQuery();
+   
     return(
         <>
             <MainLayout>
                     <ProfileCard />
-                    <TrophyClaim />
+                    <TrophyClaim claimCode={query.get('claimCode')}/>
             </MainLayout>
         </>  
     )

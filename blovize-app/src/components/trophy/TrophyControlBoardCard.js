@@ -1,10 +1,16 @@
 import QRCode from "react-qr-code";
+import {MdEmail} from 'react-icons/md';
 
-import {Flex, FlexStyled, ImageStyled, Button, P, LinkStyled} from '../UI';
+import {Flex, FlexStyled, ImageStyled, Button, P, LinkStyled, A} from '../UI';
+import {firebaseBlovizeLink} from '../../configFirabase';
 
 const TrophyControlBoardCard = (props) => {
   const {trophyProps} = props;
   const {id, playerName, isClaimed, claimEmail, claimDate, claimCode} = trophyProps;
+  const finalDate = new Date(claimDate);
+  const dateString = `${finalDate.getDate()}/${(finalDate.getMonth()) + 1}/${finalDate.getFullYear()}`;
+  const claimLink = `${firebaseBlovizeLink? firebaseBlovizeLink : 'https://localhost:3000'}/claim-trophy?claimCode=${claimCode}`
+  console.log(claimLink);
     
     return(
       
@@ -16,6 +22,12 @@ const TrophyControlBoardCard = (props) => {
           <P>Claim email:{claimEmail}</P>
           :
           <P>Claim code:{claimCode}</P>
+        }
+        {
+          isClaimed ? 
+          <P>{dateString}</P>
+          :
+          <A href={`mailto:${claimEmail}?subject=Hello ${claimEmail}, claim your trophy! - Blovize&body=Congratulations for your tropy. You can claim it in the following link: ${claimLink}`}><MdEmail size={30}/></A>
         }
          <LinkStyled><QRCode value={claimCode} size={30}/></LinkStyled>
         {isClaimed ? 

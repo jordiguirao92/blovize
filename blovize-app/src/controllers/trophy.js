@@ -68,6 +68,23 @@ export async function likeTrophy(userId, trophyId, trophyLikes, action) {
 }
 
 
+//Claim code function
+export async function claimTrophy(claimCode) {
+  const { success, data } = await listCollectionFiltered(TROPHIES_CHILDREN_COLLECTION, "claimCode", "==", claimCode);
+  console.log(success, data);
+  if(!data.isClaimed) {
+     //await updateCollectionObject(TROPHIES_CHILDREN_COLLECTION, trophyId, values);
+  } else {
+    console.log('Sorry, this trophy have been claimed before')
+  }
+  return {success: true}
+}
+
+
+
+
+
+
 
 export async function createTrophy(formData, playersList) { 
   //Create father ID:
@@ -97,13 +114,12 @@ export async function createTrophy(formData, playersList) {
     for (let j=0; j < playersList[i].numberTrophies; j+=1) {
       const childrenCollection = await listCollection(TROPHIES_CHILDREN_COLLECTION);
       const childrenID = childrenCollection.data.length + 1;
-      console.log(childrenID);
       const childrenData = {
         acceptOffer: false, 
         branch, 
-        claimCode: playersList[i].playerBlovizeEmail ? '' : createClaimCode(), 
-        claimDate: playersList[i].playerBlovizeEmail ? new Date().getTime() : '',
-        claimEmail:  playersList[i].playerBlovizeEmail ?  playersList[i].playerBlovizeEmail : '',
+        claimCode: playersList[i].isBlovizeUser ? '' : createClaimCode(), 
+        claimDate: playersList[i].isBlovizeUser ? new Date().getTime() : '',
+        claimEmail:  playersList[i].playerEmail,
         classification, 
         date: newData, 
         fatherId: fatherID, 
@@ -111,12 +127,12 @@ export async function createTrophy(formData, playersList) {
         image,
         description,
         institution,
-        isClaimed: playersList[i].playerBlovizeEmail ? true : false,
+        isClaimed: playersList[i].isBlovizeUser ? true : false,
         likes: 0,
         name,
         offerHistory: [],
         onSale: false,
-        owner: playersList[i].playerBlovizeEmail ? playersList[i].playerBlovizeEmail : '',
+        owner: playersList[i].isBlovizeUser ? playersList[i].playerEmail : '',
         ownerList: [],
         playerName: playersList[i].playerName,
         price: 0,
