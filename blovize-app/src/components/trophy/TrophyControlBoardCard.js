@@ -9,7 +9,7 @@ const TrophyControlBoardCard = (props) => {
   const {id, playerName, isClaimed, claimEmail, claimDate, claimCode} = trophyProps;
   const finalDate = new Date(claimDate);
   const dateString = `${finalDate.getDate()}/${(finalDate.getMonth()) + 1}/${finalDate.getFullYear()}`;
-  const claimLink = `${firebaseBlovizeLink? firebaseBlovizeLink : 'https://localhost:3000'}/claim-trophy?claimCode=${claimCode}`
+  const claimLink = `${firebaseBlovizeLink? firebaseBlovizeLink : 'http://localhost:3000'}/claim-trophy?claimCode=${claimCode}`
   console.log(claimLink);
     
     return(
@@ -27,7 +27,7 @@ const TrophyControlBoardCard = (props) => {
           isClaimed ? 
           <P>{dateString}</P>
           :
-          <A href={`mailto:${claimEmail}?subject=Hello ${claimEmail}, claim your trophy! - Blovize&body=Congratulations for your tropy. You can claim it in the following link: ${claimLink}`}><MdEmail size={30}/></A>
+          <A href={`mailto:${claimEmail}?subject=Hello ${claimEmail}, claim your trophy! - Blovize&body=Congratulations for your tropy. You can claim it in the following link:%0D${claimLink}`}><MdEmail size={30}/></A>
         }
          <LinkStyled><QRCode value={claimCode} size={30}/></LinkStyled>
         {isClaimed ? 

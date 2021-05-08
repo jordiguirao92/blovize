@@ -68,21 +68,26 @@ export async function likeTrophy(userId, trophyId, trophyLikes, action) {
 }
 
 
-//Claim code function
-export async function claimTrophy(claimCode) {
+export async function claimTrophy(claimCode, user) {
   const { success, data } = await listCollectionFiltered(TROPHIES_CHILDREN_COLLECTION, "claimCode", "==", claimCode);
-  console.log(success, data);
-  if(!data.isClaimed) {
-     //await updateCollectionObject(TROPHIES_CHILDREN_COLLECTION, trophyId, values);
+  const [trophyData] = data;
+  let updateTrophy = {};
+
+  if(!trophyData.isClaimed) {
+    if(trophyData.claimEmail === user.email){
+      updateTrophy = {...trophyData, isClaimed: true, claimDate: new Date().getTime(), owner: user.email};
+      console.log(updateTrophy);
+      await updateCollectionObject(TROPHIES_CHILDREN_COLLECTION, trophyData.id.toString(), updateTrophy);
+    } else {
+      console.log('Sorry, you are not the claimer email');
+      return {success: false, message: 'Sorry, you are not the claimer email'}
+    }  
   } else {
-    console.log('Sorry, this trophy have been claimed before')
+    console.log('Sorry, this trophy have been claimed before');
+    return {success: false, message: 'Sorry, this trophy have been claimed before'}
   }
-  return {success: true}
+  return {success: true, message: updateTrophy};
 }
-
-
-
-
 
 
 

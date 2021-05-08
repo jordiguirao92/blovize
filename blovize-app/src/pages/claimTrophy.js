@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import {useDispatch} from 'react-redux';
 import {useHistory} from 'react-router-dom';
+import { useSelector } from 'react-redux';
 
 import {registerAuthObserver} from '../services/auth';
 import { setUser, clearUser } from '../redux/user/userActions';
@@ -18,12 +19,13 @@ import TrophyClaim from '../components/trophy/TrophyClaim';
 
 const ClaimTrophy= () => {
     const query = useQuery();
+    const user = useSelector(state => state.user);
    
     return(
         <>
             <MainLayout>
                     <ProfileCard />
-                    <TrophyClaim claimCode={query.get('claimCode')}/>
+                    <TrophyClaim claimCode={query.get('claimCode')} user={user}/>
             </MainLayout>
         </>  
     )

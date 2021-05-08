@@ -1,17 +1,24 @@
-import {Flex, FlexStyled, Input, Button, Spacer} from '../UI';
+import {Flex, FlexStyled, Input, Button, Spacer, P} from '../UI';
 import { useState } from 'react';
-import {claimTrophy} from '../../controllers/trophy'
+import {useHistory} from 'react-router-dom';
+
+import {claimTrophy} from '../../controllers/trophy';
 
 
-const TrophyClaim = ({claimCode}) => {
-  const[claimCodeData, setClaimCodeData] =  useState({claimCode: claimCode ? claimCode : ''})
+const TrophyClaim = ({claimCode, user}) => {
+  const [claimCodeData, setClaimCodeData] =  useState({claimCode: claimCode ? claimCode : ''})
   const [error, setError] = useState('');
-  console.log(claimCodeData.claimCode)
-  console.log(claimCode);
+  const history = useHistory();
+  
 
   const claim = async() => {
-    console.log('claim')
-    await claimTrophy(claimCodeData);
+    const {success, message} = await claimTrophy(claimCodeData.claimCode, user);
+    console.log(success, message);
+    if(success) {
+      setError('');
+      history.push(`/detail/${message.id}`);
+    }
+    return !success && setError(message);
   }
     
 
@@ -28,6 +35,7 @@ const TrophyClaim = ({claimCode}) => {
                />
         <Spacer />
         <Button width='300px' height='30px' onClick={() => claim()}>Claim</Button>
+        {error && <P color='red'>&nbsp;{error}</P>}
       </FlexStyled>
     )
 }
