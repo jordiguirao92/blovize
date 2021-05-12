@@ -2,6 +2,9 @@ import { Link } from 'react-router-dom';
 
 import styled from 'styled-components';
 import theme from '../styles/theme';
+import image from '../images/landing/trophy1.jpeg';
+import homeImage from '../images/landing/sports3.jpeg';
+
 
 export const Wrapper = styled.div`
   width: ${props => props.width ? props.width : ''};
@@ -42,7 +45,15 @@ export const FlexStyled = styled.div`
 `
 
 export const LandingStyle = styled(Flex)`
-  background-image: linear-gradient(180deg, #171923 0%, #0707FF 47.92%);
+  background-image: url(${image});
+  background-size: 100% 130%;
+  background-repeat: no-repeat;
+  /*background-image: linear-gradient(180deg, #171923 0%, #0707FF 47.92%);*/
+`
+export const HomeImage = styled(Flex)`
+  background-image: url(${homeImage});
+  background-size: 100% 130%;
+  background-repeat: no-repeat;
 `
 
 
@@ -58,6 +69,7 @@ export const Spacer = styled.div`
 
 export const H1 = styled.h1`
     color:  ${props => props.color ? props.color : theme.colors.white};
+    margin: ${props => props.margin ? props.margin : '0px'};
  
 `
 
@@ -140,7 +152,9 @@ export const FooterStyled = styled.footer`
   flex-direction: ${props => props.direction ? props.direction : 'row'};
   justify-content: ${props => props.justify ? props.justify : 'space-around'};
   background-color: ${props => props.backColor ? props.backColor : theme.colors.black};
+  height: ${props => props.height ? props.height : '100px'};
   /*
+  background-image: linear-gradient(180deg, #171923 0%, #0707FF 47.92%);
   position: fixed;
   bottom: 0;
   left:0;

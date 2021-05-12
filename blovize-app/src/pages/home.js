@@ -7,7 +7,7 @@ import LandingLayout from '../components/layout/LandingLayout';
 import Landing from '../components/Landing';
 import SignUpRole from '../components/form/SignUpRole';
 import Loading from '../components/Loading';
-import {Flex, Button, Spacer} from '../components/UI';
+import {Flex, Button, Spacer, HomeImage} from '../components/UI';
 
 
 const HomePage = () => {
@@ -35,6 +35,7 @@ const HomePage = () => {
                 </Flex>
                 <Spacer />
                 {accesApp === 'signup' && <SignUpRole />}
+                <HomeImage height='500px'/>
             </LandingLayout>  
         </>
     )

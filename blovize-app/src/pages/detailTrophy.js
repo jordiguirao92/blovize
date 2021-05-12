@@ -7,6 +7,7 @@ import {getTrophiesById} from '../controllers/trophy';
 import MainLayout from '../components/layout/MainLayout';
 import ProfileCard from '../components/ProfileCard';
 import TrophyBigCard from '../components/trophy/TrophyBigCard';
+import TrophyBigCardInstitution from '../components/trophy/TrophyBigCardInstitution';
 
 
 const DetailTrophy = () => {
@@ -33,7 +34,7 @@ const DetailTrophy = () => {
         <>
             <MainLayout>
                     <ProfileCard />
-                    <TrophyBigCard trophy={trophy} isOwner={user.email === trophy.owner ? true : false}/>
+                      <TrophyBigCard trophy={trophy} isOwner={user.email === trophy.owner ? true : false}/>  
             </MainLayout>
         </>  
     )

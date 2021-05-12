@@ -22,6 +22,10 @@ export async function getInstitutionTrophies(owner) {
   const { success, data } = await listCollectionFiltered(TROPHIES_FATHER_COLLECTION, "creator", "==", owner);
   return success ? data : null;
 }
+export async function getFatherTrophy(id) {
+  const { success, data } = await listCollectionFiltered(TROPHIES_FATHER_COLLECTION, "id", "==", id);
+  return success ? data : null;
+}
 
 export async function getChildrenTrophies(id) {
   const { success, data } = await listCollectionFiltered(TROPHIES_CHILDREN_COLLECTION, "fatherId", "==", id);

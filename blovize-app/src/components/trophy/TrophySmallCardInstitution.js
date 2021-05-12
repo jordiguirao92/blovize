@@ -10,7 +10,6 @@ const TrophySmallCardInstitution = (props) => {
     
     return(
       
-      <LinkStyled to={`/detail/${id}`}>
         <FlexStyled justify='center' direction='column' width='320px' height='350px' padding='0px 10px' margin='10px'>
           <ImageStyled src={image} alt='trophy image'/>
           <P align="center" bold='bold' color={props => props.theme.colors.primary}>{name}</P>
@@ -21,7 +20,6 @@ const TrophySmallCardInstitution = (props) => {
             <P>{dateString}</P>
           </Flex>
         </FlexStyled>
-      </LinkStyled>
     )
 }
 

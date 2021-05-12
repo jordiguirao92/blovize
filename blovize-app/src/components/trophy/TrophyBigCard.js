@@ -72,7 +72,10 @@ const TrophyBigCard = ({trophy, isOwner}) => {
               {
                 user.email === owner && <FcRating size={30} />
               }
-              <AiFillHeart size={30} style={{fill: likedTrophies.includes(id) ? 'red' : 'grey' , cursor: 'pointer'}} onClick={() => likeOnClick()}/>
+              <Flex direction='column' width='auto'>
+                <AiFillHeart size={30} style={{fill: likedTrophies.includes(id) ? 'red' : 'grey' , cursor: 'pointer'}} onClick={() => likeOnClick()}/> 
+                <P>{numLikes}</P>
+            </Flex> 
             </Flex>
             <Spacer/>
             <ImageStyled src={image} height='250px' alt='trophy image'/>

@@ -10,7 +10,7 @@ const HeaderMain = () => {
     const user = useSelector(state => state.user);
     
     return(
-        <HeaderStyled>
+        <HeaderStyled >
         <Burguer />
             <div>
                 <h3>Blovize</h3>
