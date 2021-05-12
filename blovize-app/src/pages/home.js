@@ -7,7 +7,7 @@ import LandingLayout from '../components/layout/LandingLayout';
 import Landing from '../components/Landing';
 import SignUpRole from '../components/form/SignUpRole';
 import Loading from '../components/Loading';
-import {Flex, Button, Spacer, HomeImage} from '../components/UI';
+import {Flex, Button, Spacer, HomeImage, H2} from '../components/UI';
 
 
 const HomePage = () => {
@@ -28,12 +28,12 @@ const HomePage = () => {
         <>
             <LandingLayout>
                 <Landing />
-                <Spacer />
-                <Flex justify='space-evenly'>
-                    <Button  width='200px' height='65px' onClick={() => setAccesApp('signup') }>Sign Up</Button>
-                    <Link to="/login"><Button width='200px' height='65px' backColor={props => props.theme.colors.white} color={props => props.theme.colors.primary}>Log in</Button></Link>
+
+                <Flex justify='space-evenly' padding='50px 0px'>
+                    <Button  width='200px' height='65px' onClick={() => setAccesApp('signup') }><H2 color={props => props.theme.colors.white}>Sign Up</H2></Button>
+                    <Link to="/login"><Button width='200px' height='65px' backColor={props => props.theme.colors.white} color={props => props.theme.colors.primary}><H2 color={props => props.theme.colors.primary}>Log in</H2></Button></Link>
                 </Flex>
-                <Spacer />
+
                 {accesApp === 'signup' && <SignUpRole />}
                 <HomeImage height='700px'/>
             </LandingLayout>  
