@@ -6,6 +6,7 @@ import {registerAuthObserver} from '../../services/auth';
 import { setUser, clearUser } from '../../redux/user/userActions';
 import {setSidebar} from '../../redux/sidebar/sidebarActions';
 import { getUserProfile } from '../../controllers/user';
+import {WrapperDiv} from '../UI';
 
 import Footer from '../Footer';
 import HeaderMain from '../HeaderMain';
@@ -42,7 +43,9 @@ const MainLayout = ({ children }) => {
     <>
       <HeaderMain />
       <SideBar />
+      <WrapperDiv>
       {children}
+      </WrapperDiv>
       <Footer />
     </>
   )

@@ -1,22 +1,29 @@
 import { useSelector } from 'react-redux';
 import {useHistory} from 'react-router-dom';
+import { GiWallet } from 'react-icons/gi';
+import {iconSize} from './UI';
 
-import {HeaderStyled, LinkStyled, Button} from '../components/UI';
+import {HeaderStyled, LinkStyled, Button, Flex} from '../components/UI';
 import {logout} from '../services/auth';
 import Burguer from './Burguer';
 
 const HeaderMain = () => {
     const history = useHistory();
     const user = useSelector(state => state.user);
+    console.log(user);
     
     return(
         <HeaderStyled >
         <Burguer />
             <div>
-                <h3>Blovize</h3>
+                <LinkStyled to="/main" color={props => props.theme.colors.primary}><h3>BLOVIZE</h3></LinkStyled>
             </div>
             {user 
-                ? <span>Hello {user.name} <Button onClick={() => {logout(); history.push('/');}}>Log out</Button></span>
+                ? <Flex width='30%' justify='space-evenly'>
+                    <span>Hello {user.name}! </span>
+                    <Flex width='auto'><GiWallet size={30} style={{fill: ''}}/> {user.walletBalance}€</Flex>
+                    <Button onClick={() => {logout(); history.push('/');}}>Log out</Button>
+                  </Flex>
                 : <LinkStyled to="/login"><Button>Login</Button></LinkStyled>
             }
         </HeaderStyled>

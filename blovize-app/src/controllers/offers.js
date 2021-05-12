@@ -27,13 +27,15 @@ export async function acceptOfferReceived(offerProps, trophies, user) {
   
   //Update User Saler
   const listResult = user.trophyList.filter(trophyId => trophyId !== trophies.id);
-  const salerObject = {...user, trophyList: listResult};
+  const newSalerBalance = user.walletBalance + offerProps.offerPrice;
+  const salerObject = {...user, walletBalance: newSalerBalance, trophyList: listResult};
   const updateSalerProfile = await updateUserProfile(user.id, salerObject);
  
   //Update User Buyer
   const [buyer] = await getUserProfileByEmail(offerProps.buyer);
   const newTrophyList = [...buyer.trophyList, trophies.id];
-  const buyerObject = {...buyer, trophyList: newTrophyList};
+  const newBuyerBalance = buyer.walletBalance - offerProps.offerPrice;
+  const buyerObject = {...buyer, walletBalance: newBuyerBalance, trophyList: newTrophyList};
   const updateBuyerProfile = await updateUserProfile(buyer.id, buyerObject);
   return {success: true}
 }
@@ -43,7 +45,7 @@ export async function declineOfferReceived(offerProps) {
   const newDate = new Date().getTime();
   const offerObject = {...offerProps, date: newDate, salePrice: 0, status: 'rejected'}
   console.log(offerObject)
-  console.log( offerProps.id.toString())
+  console.log(offerProps.id.toString())
   const updateOffer = await updateCollectionObject(OFFERS_COLLECTION, offerProps.id.toString(), offerObject);
   return {success: true}
 }

@@ -4,6 +4,7 @@ import styled from 'styled-components';
 import theme from '../styles/theme';
 import image from '../images/landing/trophy1.jpeg';
 import homeImage from '../images/landing/sports3.jpeg';
+import mainImage from '../images/landing/sports2.jpeg';
 
 
 export const Wrapper = styled.div`
@@ -53,6 +54,12 @@ export const LandingStyle = styled(Flex)`
 export const HomeImage = styled(Flex)`
   background-image: url(${homeImage});
   background-size: 100% 130%;
+  background-repeat: no-repeat;
+`
+
+export const MainImage = styled(Flex)`
+  background-image: url(${mainImage});
+  background-size: 100% 120%;
   background-repeat: no-repeat;
 `
 
@@ -154,7 +161,6 @@ export const FooterStyled = styled.footer`
   background-color: ${props => props.backColor ? props.backColor : theme.colors.black};
   height: ${props => props.height ? props.height : '100px'};
   /*
-  background-image: linear-gradient(180deg, #171923 0%, #0707FF 47.92%);
   position: fixed;
   bottom: 0;
   left:0;
@@ -163,11 +169,15 @@ export const FooterStyled = styled.footer`
   */
 `
 
+export const WrapperDiv = styled.div`
+  min-height: 100vh;
+`
+
 export const HeaderStyled = styled.header`
   padding: 20px;
   display: flex;
   flex-direction: ${props => props.direction ? props.direction : 'row'};
-  justify-content: ${props => props.justify ? props.justify : 'space-around'};
+  justify-content: ${props => props.justify ? props.justify : 'space-between'};
   align-items: ${props => props.align ? props.align : 'center'};
   background-color: ${props => props.backColor ? props.backColor : theme.colors.grey};
 `
@@ -216,6 +226,7 @@ export const FullDiv = styled.div`
 
 export const BurguerStyled = styled.button`
     display: flex;
+    margin: 0px 50px;
     flex-direction: column;
     justify-content: space-around;
     width: 2rem;

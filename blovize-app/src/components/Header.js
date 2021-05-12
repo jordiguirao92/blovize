@@ -5,7 +5,7 @@ const Header = () => {
     const user = useSelector(state => state.user);
     
     return(
-        <HeaderStyled>
+        <HeaderStyled justify='center'>
             <div>
                 <h3>Blovize</h3>
             </div>

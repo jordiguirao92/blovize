@@ -35,7 +35,7 @@ const HomePage = () => {
                 </Flex>
                 <Spacer />
                 {accesApp === 'signup' && <SignUpRole />}
-                <HomeImage height='500px'/>
+                <HomeImage height='700px'/>
             </LandingLayout>  
         </>
     )

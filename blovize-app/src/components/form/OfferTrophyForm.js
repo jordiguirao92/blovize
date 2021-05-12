@@ -15,17 +15,21 @@ const OfferTrophyForm = ({trophy}) => {
     const [error, setError] = useState('');
 
     const offerTrophy = async () => {
-        const result = await createOffer(user, trophy, formData);
-        console.log(result)
-        if(result.success) {
-            history.push('/offer-send')
-        } else {
-            return false
+        if(user.walletBalance >= formData.price) {
+            setError('')
+            const result = await createOffer(user, trophy, formData);
+            console.log(result)
+            if(result.success) {
+                history.push('/offer-send')
+            } else {
+                return false
+            }
+        }  else  {
+            setError('Insuficient Balance')
         }
     }
     
   
-
     return(
         <>
         <Flex justify='center' margin='20px 0px'>
@@ -56,6 +60,7 @@ const OfferTrophyForm = ({trophy}) => {
                                 }
                             />
                     <Button width='100px' height='30px' margin='10px' onClick={() => {offerTrophy();}}>Send offer</Button>
+                    {error && <P color='red'>&nbsp;{error}</P>}
                 </Flex>
             </ModalContent>
         </ModalBg>

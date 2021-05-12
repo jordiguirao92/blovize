@@ -8,7 +8,7 @@ export async function userSignup(userData) {
   const {email, password} = userData;
   const salt = bcrypt.genSaltSync(10);
   const hashPassword = bcrypt.hashSync(password, salt);
-  const userProfile = {...userData, password: hashPassword ,trophyList: [], trophyFavourites: [], trophyLiked: [], buyOffers: [], salesOffers: []};
+  const userProfile = {...userData, password: hashPassword ,trophyList: [], trophyFavourites: [], trophyLiked: [], buyOffers: [], salesOffers: [], walletBalance: 0};
 
   const { success: signupSuccess, data } = await singup(email, password);
 
@@ -38,13 +38,15 @@ export async function updateUserProfile(userId, values) {
 
 export async function updateBuyTrophyUsers(buyer, trophy) {
   //Update buyer user details
-  const buyerData = {...buyer, trophyList:[...buyer.trophyList, trophy.id]}
+  const newBuyerBalance = buyer.walletBalance - trophy.price;
+  const buyerData = {...buyer, walletBalance: newBuyerBalance , trophyList:[...buyer.trophyList, trophy.id]}
   const updateBuyer = await updateCollectionObject(USERS_COLLECTION, buyer.id, buyerData);
 
   //Update saler user details
   const [saler] = await getUserProfileByEmail(trophy.owner);
   const newTrophyList = saler.trophyList.filter(trophyId => trophyId !== trophy.id);
-  const salerObject = {...saler, trophyList: newTrophyList};
+  const newSalerBalance = saler.walletBalance + trophy.price;
+  const salerObject = {...saler, walletBalance: newSalerBalance, trophyList: newTrophyList};
   const updateSaler = await updateUserProfile(saler.id, salerObject);
   return true
 }
