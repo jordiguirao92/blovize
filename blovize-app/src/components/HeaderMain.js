@@ -1,10 +1,8 @@
 import { useSelector } from 'react-redux';
-import { useState } from 'react';
 import {useHistory} from 'react-router-dom';
 
 import {HeaderStyled, LinkStyled, Button} from '../components/UI';
 import {logout} from '../services/auth';
-
 import Burguer from './Burguer';
 
 const HeaderMain = () => {

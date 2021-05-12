@@ -1,6 +1,5 @@
 import { useState, useEffect } from 'react';
 import { useSelector } from 'react-redux';
-import {useHistory} from 'react-router-dom';
 
 import { getPlayerTrophies, getInstitutionTrophies } from '../controllers/trophy'; 
 import MainLayout from '../components/layout/MainLayout';

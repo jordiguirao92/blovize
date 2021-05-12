@@ -1,11 +1,7 @@
 import { useState, useEffect } from 'react';
 import { useSelector } from 'react-redux';
-import {useDispatch} from 'react-redux';
-import {useHistory} from 'react-router-dom';
-
 
 import { getMarketplaceOnSaleTrophies, getMarketplaceAccepOfferTrophies } from '../controllers/trophy'; 
-
 import MainLayout from '../components/layout/MainLayout';
 import ProfileCard from '../components/ProfileCard';
 import TrophiesGallery from '../components/trophy/TrophiesGallery';

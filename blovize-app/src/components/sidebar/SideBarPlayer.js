@@ -1,5 +1,3 @@
-import styled from 'styled-components';
-import { useState } from 'react';
 import { useSelector } from 'react-redux';
 
 import {SidebarDataPlayer} from './SideBarDataPlayer';
@@ -7,7 +5,6 @@ import {LinkStyled, LiStyled, NavStyled, Spacer, A } from '../UI'
 
 
 const SideBarPlayer = () => {
-    
     const sidebar = useSelector(state => state.sidebar);
 
     return(

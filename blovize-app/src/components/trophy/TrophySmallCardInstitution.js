@@ -1,11 +1,9 @@
-import {AiFillHeart} from 'react-icons/ai'
-
 import {Flex, FlexStyled, ImageStyled, P, LinkStyled} from '../UI';
 
 
 const TrophySmallCardInstitution = (props) => {
   const { trophyProps } = props;
-  const {image, name, team, price, id, date, playerName, likes} = trophyProps;
+  const {image, name, team, id, date, playerName} = trophyProps;
   //const finalDate = new Date(date.seconds*1000);
   const finalDate = new Date(date);
   const dateString = `${finalDate.getDate()}/${(finalDate.getMonth()) + 1}/${finalDate.getFullYear()}`;

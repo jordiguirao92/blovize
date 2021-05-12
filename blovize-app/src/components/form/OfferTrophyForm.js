@@ -10,7 +10,6 @@ import {createOffer} from '../../controllers/offers';
 const OfferTrophyForm = ({trophy}) => {
     const history = useHistory();
     const user = useSelector(state => state.user);
-    const { price, id, onSale, acceptOffers} = trophy;
     const [formData, setFormData] = useState({ price: ''});
     const [showModal, setShowModal] = useState(false);
     const [error, setError] = useState('');

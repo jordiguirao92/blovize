@@ -1,6 +1,5 @@
-import { singup } from '../services/auth';
-import { createObjectWithId, getObjectById, listCollectionFiltered, updateCollectionObject, listCollection} from '../services/db';
-import  {updateUserProfile, getUserProfile, getUserProfileByEmail} from './user';
+import { createObjectWithId, listCollectionFiltered, updateCollectionObject, listCollection} from '../services/db';
+import  {updateUserProfile, getUserProfileByEmail} from './user';
 import {updateTrophyDetails} from './trophy';
 
 const OFFERS_COLLECTION = 'offers';

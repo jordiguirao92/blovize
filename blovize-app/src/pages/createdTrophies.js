@@ -1,10 +1,7 @@
 import { useState, useEffect } from 'react';
-import {useDispatch} from 'react-redux';
 import { useSelector } from 'react-redux';
-import {useHistory} from 'react-router-dom';
 
 import { getInstitutionTrophies } from '../controllers/trophy'; 
-import {Flex} from '../components/UI';
 import MainLayout from '../components/layout/MainLayout';
 import ProfileCard from '../components/ProfileCard';
 import TrophyControlCard from '../components/trophy/TrophyControlCard';

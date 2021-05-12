@@ -3,7 +3,7 @@ import {useState} from 'react';
 import {useHistory} from 'react-router-dom';
 import { useSelector } from 'react-redux';
 
-import {Flex, FlexStyled, Button, Input, H3, Spacer, P, ModalBg, ModalContent, CloseIconContainer} from '../UI';
+import {Flex, FlexStyled, Button, H3, Spacer, P, ModalBg, ModalContent, CloseIconContainer} from '../UI';
 import {updateBuyTrophy} from '../../controllers/trophy';
 import {updateBuyTrophyUsers} from '../../controllers/user';
 
@@ -11,7 +11,7 @@ import {updateBuyTrophyUsers} from '../../controllers/user';
 const BuyTrophyForm = ({trophy}) => {
     const history = useHistory();
     const user = useSelector(state => state.user);
-    const { price, id, onSale, acceptOffers} = trophy;
+    const { price } = trophy;
     const [showModal, setShowModal] = useState(false);
     const [error, setError] = useState('');
 

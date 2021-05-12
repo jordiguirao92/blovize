@@ -1,4 +1,4 @@
-import {Flex, FlexStyled, Input, Button, Spacer, P} from '../UI';
+import {FlexStyled, Input, Button, Spacer, P} from '../UI';
 import { useState } from 'react';
 import {useHistory} from 'react-router-dom';
 

@@ -3,7 +3,6 @@ import {useParams} from "react-router-dom";
 import LandingLayout from '../components/layout/LandingLayout';
 import Landing from '../components/Landing';
 import SignUpForm from '../components/form/SignUpForm';
-//import { getRoles } from '@testing-library/dom';
 
 
 const SignUpPage = () => {

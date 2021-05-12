@@ -1,9 +1,9 @@
 import {AiFillHeart} from 'react-icons/ai';
 import { FcRating } from 'react-icons/fc';
-import {useState, useEffect} from 'react';
+import {useState} from 'react';
 import { useSelector } from 'react-redux';
 
-import {Flex, FlexStyled, ImageStyled, Button, P, LinkStyled, Spacer} from '../UI';
+import {Flex, FlexStyled, ImageStyled, P, LinkStyled, Spacer} from '../UI';
 import Star from './Star';
 import {updateUserProfile} from '../../controllers/user';
 import {updateTrophyDetails, getTrophiesById, likeTrophy} from '../../controllers/trophy';

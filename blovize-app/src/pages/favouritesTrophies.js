@@ -4,7 +4,6 @@ import { useSelector } from 'react-redux';
 import MainLayout from '../components/layout/MainLayout';
 import ProfileCard from '../components/ProfileCard';
 import TrophiesGallery from '../components/trophy/TrophiesGallery';
-import Loading from '../components/Loading';
 import {getFavouriteTrophies} from '../controllers/trophy';
 
 
@@ -17,7 +16,6 @@ const FavouriteTrophies = () => {
   useEffect(() => {
     getTrophies();
     console.log(trophies);
-
   }, []);
 
   const getTrophies = async () => {

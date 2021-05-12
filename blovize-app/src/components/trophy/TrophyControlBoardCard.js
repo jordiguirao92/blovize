@@ -1,7 +1,7 @@
 import QRCode from "react-qr-code";
 import {MdEmail} from 'react-icons/md';
 
-import {Flex, FlexStyled, ImageStyled, Button, P, LinkStyled, A} from '../UI';
+import {FlexStyled, P, LinkStyled, A} from '../UI';
 import {firebaseBlovizeLink} from '../../configFirabase';
 
 const TrophyControlBoardCard = (props) => {

@@ -3,7 +3,7 @@ import {useHistory} from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import firebase from 'firebase';
 
-import {Flex, FlexStyled, Button, Input, H3, Spacer, LinkStyled, A, Select, ImageStyled, InputImage, P} from '../UI';
+import {Flex, FlexStyled, Button, Input, H3, Spacer, A, Select, ImageStyled, InputImage, P} from '../UI';
 import {SportBranchData} from './SportBranchData';
 import {createTrophy} from '../../controllers/trophy';
 import {getUserProfileByEmail} from '../../controllers/user';

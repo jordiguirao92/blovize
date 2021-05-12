@@ -1,8 +1,6 @@
-import { singup } from '../services/auth';
-import { createObjectWithId, getObjectById, listCollectionFiltered, updateCollectionObject, listCollection } from '../services/db';
+import { createObjectWithId, listCollectionFiltered, updateCollectionObject, listCollection } from '../services/db';
 import {updateUserProfile} from '../controllers/user';
 
-const USERS_COLLECTION = 'profiles';
 const TROPHIES_CHILDREN_COLLECTION = 'trophiesChildren';
 const TROPHIES_FATHER_COLLECTION = 'trophiesFather';
 

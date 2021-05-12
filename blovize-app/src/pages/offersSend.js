@@ -3,10 +3,8 @@ import { useSelector } from 'react-redux';
 
 import MainLayout from '../components/layout/MainLayout';
 import ProfileCard from '../components/ProfileCard';
-import OfferCardReceived from '../components/offers/OfferCardReceived';
 import {getOffersSend} from '../controllers/offers';
 import OfferCardSend from '../components/offers/OfferCardSend'
-
 
 
 

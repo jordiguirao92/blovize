@@ -1,10 +1,10 @@
-import {useState, useEffect } from 'react';
+import {useState} from 'react';
 import {useHistory} from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import firebase from 'firebase';
 
-import {Flex, FlexStyled, Button, Input, H3, Spacer, LinkStyled, A, TextArea, ImageStyled, InputImage} from '../UI';
-import {userSignup, updateUserProfile} from '../../controllers/user';
+import {Flex, FlexStyled, Button, Input, H3, Spacer, A, TextArea, ImageStyled, InputImage} from '../UI';
+import {updateUserProfile} from '../../controllers/user';
 
 const ConfigurationProfileForm = ({role}) => {
 

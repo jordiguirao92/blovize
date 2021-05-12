@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 
-import {Flex, FlexStyled, Button, P} from '../UI';
+import {FlexStyled, P} from '../UI';
 import {getTrophiesById} from '../../controllers/trophy';
 
 const OfferCardSend = ({offerProps}) => {

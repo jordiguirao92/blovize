@@ -1,39 +1,42 @@
 import {AiFillHeart} from 'react-icons/ai';
 import { FcRating } from 'react-icons/fc';
-import {useState, useEffect} from 'react';
+import {useState} from 'react';
 import { useSelector } from 'react-redux';
 
 
-import {Flex, FlexStyled, Button, ImageStyled, H3, Spacer, P, ModalBg, ModalContent, CloseIconContainer, LinkStyled} from '../UI';
+import {Flex, FlexStyled, ImageStyled, H3, Spacer, P} from '../UI';
 import Star from './Star';
-import {updateUserProfile} from '../../controllers/user';
 import SaleOffersTrophyForm from '../form/SaleOffersTrophyForm';
 import BuyTrophyForm from '../form/BuyTrophyForm';
 import OfferTrophyForm from '../form/OfferTrophyForm';
+import {updateUserProfile} from '../../controllers/user';
+import {likeTrophy} from '../../controllers/trophy';
 
 
 const TrophyBigCard = ({trophy, isOwner}) => {
   const user = useSelector(state => state.user);
-  const {image, name, team, price, id, date, playerName, onSale, acceptOffers, owner, description} = trophy;
+  const {image, name, team, price, id, date, playerName, onSale, acceptOffers, owner, description, likes} = trophy;
   const [likedTrophies, setLikedTrophies] = useState(user.trophyLiked);
   const [favouriteTrophies, setFavouriteTrophies] = useState(user.trophyFavourites);
-  //const finalDate = new Date(date.seconds*1000);
+  const [numLikes, setNumlikes] = useState(likes);
+
   const finalDate = new Date(date);
   const dateString = `${finalDate.getDate()}/${(finalDate.getMonth()) + 1}/${finalDate.getFullYear()}`;
 
   const likeOnClick = async () => {
     try {
       if (likedTrophies.includes(id)) {
-        const result = likedTrophies.filter(trophyId => trophyId !== id);
-        console.log(result);
-        setLikedTrophies(result);
-        console.log(likedTrophies);
-        //await updateUserProfile(user.id, result);
-  
-      } else { 
-        setLikedTrophies(likedTrophies.push(id));
-        console.log(likedTrophies);
-        //await updateUserProfile(user.id, result);
+        const likeOut = likedTrophies.filter(trophyId => trophyId !== id);
+        setLikedTrophies(likeOut);
+        setNumlikes(numLikes - 1);
+        await likeTrophy(user.id, id, {trophyLiked: likeOut}, 'removeLike');
+        
+      } else {
+        const likeIn = [...likedTrophies, id];
+        setLikedTrophies(likeIn);
+        setNumlikes(numLikes + 1);
+        await likeTrophy(user.id, id, {trophyLiked: likeIn}, 'addLike');
+        
       }
     } catch (error) {
       return error;
@@ -44,16 +47,14 @@ const TrophyBigCard = ({trophy, isOwner}) => {
   const favouriteOnClick = async () => {
     try {
       if (favouriteTrophies.includes(id)) {
-        const result = favouriteTrophies.filter(trophyId => trophyId !== id);
-        console.log(result);
-        setFavouriteTrophies(result);
-        console.log(favouriteTrophies);
-        //await updateUserProfile(user.id, result);
+        const favouriteOut = favouriteTrophies.filter(trophyId => trophyId !== id);
+        setFavouriteTrophies(favouriteOut);
+        await updateUserProfile(user.id, {trophyFavourites: favouriteOut});
   
       } else { 
-        setFavouriteTrophies(favouriteTrophies.push(id));
-        console.log(favouriteTrophies);
-        //await updateUserProfile(user.id, result);
+        const favouriteIn = [...favouriteTrophies, id];
+        setFavouriteTrophies(favouriteIn);
+        await updateUserProfile(user.id, {trophyFavourites: favouriteIn});
       }
     } catch (error) {
       return error;
