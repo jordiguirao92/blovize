@@ -21,7 +21,13 @@ const HeaderMain = () => {
             {user 
                 ? <Flex width='30%' justify='space-evenly'>
                     <span>Hello {user.name}! </span>
-                    <Flex width='auto'><GiWallet size={30} style={{fill: ''}}/> {user.walletBalance}€</Flex>
+                    {
+                        user.userRole === 'player' 
+                        && 
+                        <Flex width='auto'>
+                            <GiWallet size={30} style={{fill: ''}}/> {user.walletBalance}€
+                        </Flex>
+                    }
                     <Button onClick={() => {logout(); history.push('/');}}>Log out</Button>
                   </Flex>
                 : <LinkStyled to="/login"><Button>Login</Button></LinkStyled>

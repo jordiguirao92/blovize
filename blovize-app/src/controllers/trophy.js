@@ -93,10 +93,13 @@ export async function claimTrophy(claimCode, user) {
 
 
 
-export async function createTrophy(formData, playersList) { 
+export async function createTrophy(formData, playersList, user) { 
   //Create father ID:
   const fatherCollection = await listCollection(TROPHIES_FATHER_COLLECTION);
   const fatherID = (fatherCollection.data.length * 100) + 100;
+
+  //Update user institution trophy list
+  const userObject = {...user, trophyList: [...user.trophyList, fatherID ] }
 
   const {name, team , date, classification, branch, image, description, institution, creator} = formData;
   const newData = new Date(date).getTime()
@@ -115,6 +118,7 @@ export async function createTrophy(formData, playersList) {
     id: fatherID
   };
   await createObjectWithId(TROPHIES_FATHER_COLLECTION, fatherData, fatherID.toString());
+  await updateUserProfile(user.id, userObject);
 
   
   for (let i=0; i < playersList.length; i+=1){

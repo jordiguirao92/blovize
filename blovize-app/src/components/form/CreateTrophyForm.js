@@ -56,7 +56,7 @@ const CreateTrophyForm = () => {
     const handleFormSubmit = async (event) => {
         event.preventDefault();
         //Introducir chequeo de datos del formulario para seguir, sino mostrar error.
-        const result = await createTrophy(formData, playersList);
+        const result = await createTrophy(formData, playersList, user);
         if (result.success) {
           history.push('/created-trophies');
         }
