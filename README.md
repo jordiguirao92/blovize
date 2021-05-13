@@ -48,6 +48,11 @@ Blovize has 2 kind of users: sport institutions and player or collectors. Each o
 
 ### How it works diagram
 
+![](./images/BlovizeDiagram.png)
+
+![](./images/BlovizeDiagramMermaid.png)
+
+
 ```mermaid
 sequenceDiagram
 Sport Institution ->> Player/Collector-1- : Assign Trophy
@@ -62,8 +67,9 @@ Player/Collector-2- -->>Player/Collector-1- : Receive an offer
 
 
 ## Images
-
-
+![](./images/BlovizeApp.png)
+![](./images/BlovizeApp1.png)
+![](./images/BlovizeApp2.png)
 
 ## Future additions
 
