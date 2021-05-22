@@ -22,7 +22,7 @@ const ConfigurationProfileForm = ({role}) => {
     
     const handleFormSubmit = async (event) => {
         event.preventDefault();
-        const uploadedFormData = {...formData, name: formData.name ? formData.name : user.name, 
+        const uploadedFormData = {profileImage: formData.profileImage ? formData.profileImage : user.profileImage, name: formData.name ? formData.name : user.name, 
             nickName: formData.nickName ? formData.nickName : user.nickName,
             description: formData.description ? formData.description : user.description };
         const result = await updateUserProfile(user.id, uploadedFormData);

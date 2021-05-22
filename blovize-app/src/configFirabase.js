@@ -8,4 +8,4 @@ export const firebaseConfig = {
     measurementId: "G-LDWTFNB77P"
   };
 
-  export const firebaseBlovizeLink = '';
+  export const firebaseBlovizeLink = 'https://blovize.web.app/';

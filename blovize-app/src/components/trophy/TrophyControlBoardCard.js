@@ -9,8 +9,8 @@ const TrophyControlBoardCard = (props) => {
   const {id, playerName, isClaimed, claimEmail, claimDate, claimCode} = trophyProps;
   const finalDate = new Date(claimDate);
   const dateString = `${finalDate.getDate()}/${(finalDate.getMonth()) + 1}/${finalDate.getFullYear()}`;
-  const claimLink = `${firebaseBlovizeLink? firebaseBlovizeLink : 'http://localhost:3000'}/claim-trophy?claimCode=${claimCode}`
-  console.log(claimLink);
+  const claimLink = `${firebaseBlovizeLink ? firebaseBlovizeLink : 'http://localhost:3000'}/claim-trophy?claimCode=${claimCode}`
+
     
     return(
       

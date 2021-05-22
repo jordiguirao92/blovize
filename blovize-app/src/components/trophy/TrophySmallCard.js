@@ -6,7 +6,7 @@ import { useSelector } from 'react-redux';
 import {Flex, FlexStyled, ImageStyled, P, LinkStyled, Spacer} from '../UI';
 import Star from './Star';
 import {updateUserProfile} from '../../controllers/user';
-import {updateTrophyDetails, getTrophiesById, likeTrophy} from '../../controllers/trophy';
+import {likeTrophy} from '../../controllers/trophy';
 
 
 const TrophySmallCard = (props) => {

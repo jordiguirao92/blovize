@@ -63,4 +63,8 @@ export const SportBranchData = [
       name: 'Table tennis',
       value: 'table tennis',
     },
+    {
+      name: 'Sailing',
+      value: 'saling',
+    },
   ];
