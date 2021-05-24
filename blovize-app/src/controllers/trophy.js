@@ -1,5 +1,5 @@
 import { createObjectWithId, listCollectionFiltered, updateCollectionObject, listCollection } from '../services/db';
-import {updateUserProfile} from '../controllers/user';
+import {updateUserProfile, getUserProfileByEmail} from '../controllers/user';
 
 const TROPHIES_CHILDREN_COLLECTION = 'trophiesChildren';
 const TROPHIES_FATHER_COLLECTION = 'trophiesFather';
@@ -80,6 +80,8 @@ export async function claimTrophy(claimCode, user) {
       updateTrophy = {...trophyData, isClaimed: true, claimDate: new Date().getTime(), owner: user.email};
       console.log(updateTrophy);
       await updateCollectionObject(TROPHIES_CHILDREN_COLLECTION, trophyData.id.toString(), updateTrophy);
+      const userData = {...user, trophyList: [...user.trophyList, trophyData.id]};
+      await updateUserProfile(user.id, userData);
     } else {
       console.log('Sorry, you are not the claimer email');
       return {success: false, message: 'Sorry, you are not the claimer email'}
@@ -150,9 +152,16 @@ export async function createTrophy(formData, playersList, user) {
         team 
       }
         await createObjectWithId(TROPHIES_CHILDREN_COLLECTION, childrenData, childrenID.toString());
-    }
+        
+        if(playersList[i].isBlovizeUser) {
+          const [user] = await getUserProfileByEmail(playersList[i].playerEmail);
+          console.log(user, 'creatortrophy')
+          const userData = {...user, trophyList: [...user.trophyList, childrenID]};
+          await updateUserProfile(user.id, userData);
+      }
   }
-  return {success : true};
+}
+return {success : true};
 }
 
 
