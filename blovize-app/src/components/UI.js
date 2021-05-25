@@ -268,6 +268,7 @@ export const ModalBg = styled.div`
   background-color: black;
   transition: opacity 0.5s;
   opacity: ${props => props.show ? 0.97 : 0};
+  z-index: ${props => props.show ? 0 : -1};
 `
 export const ModalContent = styled.div`
   position: absolute;
